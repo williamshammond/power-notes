@@ -1,7 +1,7 @@
 interface Props {
-  sectionTitle: string;
+    sectionTitle: string
 }
 
 export function HomeSectionCard({ sectionTitle }: Props) {
-  return <div>{sectionTitle}</div>;
+    return <div>{sectionTitle}</div>
 }
