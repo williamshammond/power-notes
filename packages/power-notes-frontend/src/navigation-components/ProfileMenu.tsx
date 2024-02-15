@@ -15,11 +15,11 @@ export const ProfileMenu = React.memo(function ProfileMenu({
 }: Props) {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
+    const anchorRef = React.useRef(null);
+
     const handleMenuOpen = React.useCallback(
-        (event: React.MouseEvent<HTMLElement>) => {
-            setAnchorEl(event.currentTarget);
-        },
-        []
+        () => setAnchorEl(anchorRef.current ?? null),
+        [anchorRef]
     );
 
     const handleMenuClose = React.useCallback(() => {
@@ -69,6 +69,7 @@ export const ProfileMenu = React.memo(function ProfileMenu({
                     </MenuItem>
                 )}
             </Menu>
+            <div ref={anchorRef}></div>
         </div>
     );
 });
