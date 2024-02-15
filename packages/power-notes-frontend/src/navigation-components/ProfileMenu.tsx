@@ -3,8 +3,16 @@ import { IconButton, Menu, MenuItem } from "@mui/material";
 import React from "react";
 import { LoginButton } from "../auth-components/LoginButton";
 import LogoutButton from "../auth-components/LogoutButton";
+import { useAuth0 } from "@auth0/auth0-react";
+import { UserProfile } from "../auth-components/UserProfile";
 
-export const ProfileMenu = React.memo(function ProfileMenu() {
+interface Props {
+    className?: string;
+}
+
+export const ProfileMenu = React.memo(function ProfileMenu({
+    className,
+}: Props) {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
     const handleMenuOpen = React.useCallback(
@@ -18,8 +26,10 @@ export const ProfileMenu = React.memo(function ProfileMenu() {
         setAnchorEl(null);
     }, []);
 
+    const { isAuthenticated } = useAuth0();
+
     return (
-        <React.Fragment>
+        <div className={className}>
             <IconButton
                 size="large"
                 aria-label="account of current user"
@@ -28,6 +38,7 @@ export const ProfileMenu = React.memo(function ProfileMenu() {
                 onClick={handleMenuOpen}
                 color="inherit"
             >
+                {/* TODO(whammond): Add user profile picture here once accessible from BE.*/}
                 <AccountCircle />
             </IconButton>
             <Menu
@@ -45,13 +56,19 @@ export const ProfileMenu = React.memo(function ProfileMenu() {
                 open={Boolean(anchorEl)}
                 onClose={handleMenuClose}
             >
-                <MenuItem onClick={handleMenuClose}>
-                    <LoginButton />
-                </MenuItem>
-                <MenuItem onClick={handleMenuClose}>
-                    <LogoutButton />
-                </MenuItem>
+                {isAuthenticated ? (
+                    <React.Fragment>
+                        <UserProfile />
+                        <MenuItem onClick={handleMenuClose}>
+                            <LogoutButton />
+                        </MenuItem>
+                    </React.Fragment>
+                ) : (
+                    <MenuItem onClick={handleMenuClose}>
+                        <LoginButton />
+                    </MenuItem>
+                )}
             </Menu>
-        </React.Fragment>
+        </div>
     );
 });

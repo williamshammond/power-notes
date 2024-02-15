@@ -1,7 +1,7 @@
+import styles from "../../styles/TopBar.module.scss";
 import MenuIcon from "@mui/icons-material/Menu";
 import { AppBar, Button, Drawer, IconButton, Toolbar } from "@mui/material";
 import React from "react";
-import { UserProfile } from "../auth-components/UserProfile";
 import { ProfileMenu } from "./ProfileMenu";
 
 export const TopBar = React.memo(function TopBar() {
@@ -17,7 +17,11 @@ export const TopBar = React.memo(function TopBar() {
 
     return (
         <AppBar position="static">
-            <Toolbar>
+            <Toolbar className={styles.toolBar}>
+                <Drawer variant={"persistent"} open={isLeftMenuOpen}>
+                    Test text!
+                    <Button onClick={handleLeftMenuClose}>Close</Button>
+                </Drawer>
                 <IconButton
                     aria-label="menu"
                     color="inherit"
@@ -29,12 +33,8 @@ export const TopBar = React.memo(function TopBar() {
                 >
                     <MenuIcon />
                 </IconButton>
-                <Drawer variant={"persistent"} open={isLeftMenuOpen}>
-                    Test text!
-                    <Button onClick={handleLeftMenuClose}>Close</Button>
-                </Drawer>
-                <UserProfile />
-                <ProfileMenu />
+
+                <ProfileMenu className={styles.profileMenu} />
             </Toolbar>
         </AppBar>
     );
