@@ -6,6 +6,7 @@
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
         "noUnusedLocals": true,
+        "noUncheckedIndexedAccess": true,
         "skipLibCheck": true,
         "sourceMap": true,
         "jsx": "react-jsx",

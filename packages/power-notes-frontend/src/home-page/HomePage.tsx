@@ -1,7 +1,6 @@
 import styles from "../../styles/HomePage.module.scss";
 import { HomeSectionCard } from "../navigation-components/HomeSectionCard";
 import { TopBar } from "../navigation-components/TopBar";
-import React from "react";
 
 interface SectionInformation {
     readonly title: string;
