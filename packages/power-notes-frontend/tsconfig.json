@@ -1,4 +1,5 @@
 {
+    "extends": "../../tsconfig.base.json",
     "compilerOptions": {
         "target": "ES2020",
         "useDefineForClassFields": true,
@@ -18,7 +19,13 @@
         "strict": true,
         "noUnusedLocals": true,
         "noUnusedParameters": true,
-        "noFallthroughCasesInSwitch": true
+        "noFallthroughCasesInSwitch": true,
+
+        /* Import Aliases */
+        "baseUrl": ".",
+        "paths": {
+            "+styles/*": ["styles/*"]
+        }
     },
     "include": ["src"],
     "references": [{ "path": "./tsconfig.node.json" }]

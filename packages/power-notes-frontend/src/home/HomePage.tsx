@@ -1,4 +1,4 @@
-import styles from "../../styles/HomePage.module.scss";
+import styles from "+styles/HomePage.module.scss";
 import { HomeSectionCard } from "../navigation/components/HomeSectionCard";
 
 interface SectionInformation {
