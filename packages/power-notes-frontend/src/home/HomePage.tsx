@@ -1,6 +1,5 @@
 import styles from "../../styles/HomePage.module.scss";
-import { HomeSectionCard } from "../navigation-components/HomeSectionCard";
-import { TopBar } from "../navigation-components/TopBar";
+import { HomeSectionCard } from "../navigation/components/HomeSectionCard";
 
 interface SectionInformation {
     readonly title: string;
@@ -9,14 +8,13 @@ interface SectionInformation {
 
 const sections: readonly SectionInformation[] = [
     { title: "Note", path: "note" },
-    { title: "Todo List", path: "todoList" },
+    { title: "Todo List", path: "todo" },
     { title: "Journal", path: "journal" },
 ];
 
 export function HomePage() {
     return (
         <div>
-            <TopBar />
             <h1>Home Page</h1>
             <div className={styles.cardContainer}>
                 {sections.map((section) => (

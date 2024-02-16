@@ -1,10 +1,10 @@
 import { AccountCircle } from "@mui/icons-material";
 import { IconButton, Menu, MenuItem } from "@mui/material";
 import React from "react";
-import { LoginButton } from "../auth-components/LoginButton";
-import LogoutButton from "../auth-components/LogoutButton";
+import { LoginButton } from "../../auth/components/LoginButton";
+import LogoutButton from "../../auth/components/LogoutButton";
 import { useAuth0 } from "@auth0/auth0-react";
-import { UserProfile } from "../auth-components/UserProfile";
+import { UserProfile } from "../../auth/components/UserProfile";
 
 interface Props {
     className?: string;

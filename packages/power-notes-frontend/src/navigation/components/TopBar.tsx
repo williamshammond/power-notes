@@ -1,7 +1,7 @@
 import MenuIcon from "@mui/icons-material/Menu";
 import { AppBar, Button, Drawer, IconButton, Toolbar } from "@mui/material";
 import React from "react";
-import styles from "../../styles/TopBar.module.scss";
+import styles from "../../../styles/TopBar.module.scss";
 import { ProfileMenu } from "./ProfileMenu";
 
 export const TopBar = React.memo(function TopBar() {
