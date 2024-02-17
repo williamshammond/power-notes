@@ -1,15 +1,16 @@
 import { Theme, ThemeProvider, createTheme } from "@mui/material";
 import React from "react";
+import { useIsDarkMode } from "./DarkModeContext";
 
 interface ThemeProviderWithDarkModeProps {
     readonly children: React.ReactNode;
-    readonly isDarkMode: boolean;
 }
 
 export function ThemeProviderWithDarkMode({
     children,
-    isDarkMode,
 }: ThemeProviderWithDarkModeProps) {
+    const isDarkMode = useIsDarkMode();
+
     const theme = React.useMemo(
         () => createDarkModeAwareTheme(isDarkMode),
         [isDarkMode]

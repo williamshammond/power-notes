@@ -10,7 +10,7 @@ export const DarkModeContext = React.createContext<DarkModeContextValue>({
     toggleDarkMode: () => {},
 });
 
-export function useDarkModeCotext() {
+export function useDarkModeContext() {
     return React.useContext(DarkModeContext);
 }
 
@@ -20,6 +20,6 @@ export function useIsDarkMode() {
 }
 
 export function useToggleDarkMode() {
-    const { isDarkMode } = React.useContext(DarkModeContext);
-    return isDarkMode;
+    const { toggleDarkMode } = React.useContext(DarkModeContext);
+    return toggleDarkMode;
 }
