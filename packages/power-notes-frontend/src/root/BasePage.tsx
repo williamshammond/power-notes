@@ -1,21 +1,17 @@
-import { ChevronRight, Inbox, Mail } from "@mui/icons-material";
+import { ChevronRight } from "@mui/icons-material";
 import {
     AppBar,
     AppBarProps,
     Box,
-    Divider,
     Drawer,
     IconButton,
-    List,
-    ListItem,
-    ListItemButton,
-    ListItemText,
     Toolbar,
     styled,
 } from "@mui/material";
 import React from "react";
 import { Outlet } from "react-router-dom";
 import { TopBar } from "../navigation/components/TopBar";
+import { LeftMenu } from "../navigation/components/LeftMenu";
 
 // NOTE (whammond): Heavily sourced from MUI's Drawer documentation @ https://mui.com/material-ui/react-drawer/
 
@@ -24,6 +20,32 @@ interface AppBarStyleProps extends AppBarProps {
 }
 
 const DRAWER_WIDTH = 240;
+
+const AppBarStyled = styled(AppBar, {
+    shouldForwardProp: (prop) => prop !== "isMinimized",
+})<AppBarStyleProps>(({ isMinimized, theme }) => ({
+    ransition: theme.transitions.create(["margin", "width"], {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen,
+    }),
+    ...(isMinimized && {
+        width: `calc(100% - ${DRAWER_WIDTH}px)`,
+        marginLeft: `${DRAWER_WIDTH}px`,
+        transition: theme.transitions.create(["margin", "width"], {
+            easing: theme.transitions.easing.easeOut,
+            duration: theme.transitions.duration.enteringScreen,
+        }),
+    }),
+}));
+
+const DrawerHeaderStyled = styled("div")(({ theme }) => ({
+    display: "flex",
+    alignItems: "center",
+    padding: theme.spacing(0, 1),
+    // necessary for content to be below app bar
+    ...theme.mixins.toolbar,
+    justifyContent: "flex-end",
+}));
 
 const MainContentContainer = styled("main", {
     shouldForwardProp: (prop) => prop !== "isMinimized",
@@ -46,33 +68,7 @@ const MainContentContainer = styled("main", {
     }),
 }));
 
-const DrawerHeader = styled("div")(({ theme }) => ({
-    display: "flex",
-    alignItems: "center",
-    padding: theme.spacing(0, 1),
-    // necessary for content to be below app bar
-    ...theme.mixins.toolbar,
-    justifyContent: "flex-end",
-}));
-
-const AppBarStyled = styled(AppBar, {
-    shouldForwardProp: (prop) => prop !== "isMinimized",
-})<AppBarStyleProps>(({ isMinimized, theme }) => ({
-    ransition: theme.transitions.create(["margin", "width"], {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
-    }),
-    ...(isMinimized && {
-        width: `calc(100% - ${DRAWER_WIDTH}px)`,
-        marginLeft: `${DRAWER_WIDTH}px`,
-        transition: theme.transitions.create(["margin", "width"], {
-            easing: theme.transitions.easing.easeOut,
-            duration: theme.transitions.duration.enteringScreen,
-        }),
-    }),
-}));
-
-export function Page() {
+export function BasePage() {
     const [isLeftMenuOpen, setIsLeftMenuOpen] = React.useState(false);
 
     const handleLeftMenuOpen = React.useCallback(() => {
@@ -108,42 +104,12 @@ export function Page() {
                         },
                     }}
                 >
-                    <DrawerHeader>
+                    <DrawerHeaderStyled>
                         <IconButton onClick={handleLeftMenuClose}>
                             <ChevronRight />
                         </IconButton>
-                    </DrawerHeader>
-                    <List>
-                        {["Inbox", "Starred", "Send email", "Drafts"].map(
-                            (text, index) => (
-                                <ListItem key={text} disablePadding>
-                                    <ListItemButton>
-                                        <ListItem>
-                                            {index % 2 === 0 ? (
-                                                <Inbox />
-                                            ) : (
-                                                <Mail />
-                                            )}
-                                        </ListItem>
-                                        <ListItemText primary={text} />
-                                    </ListItemButton>
-                                </ListItem>
-                            )
-                        )}
-                    </List>
-                    <Divider />
-                    <List>
-                        {["All mail", "Trash", "Spam"].map((text, index) => (
-                            <ListItem key={text} disablePadding>
-                                <ListItemButton>
-                                    <ListItem>
-                                        {index % 2 === 0 ? <Inbox /> : <Mail />}
-                                    </ListItem>
-                                    <ListItemText primary={text} />
-                                </ListItemButton>
-                            </ListItem>
-                        ))}
-                    </List>
+                    </DrawerHeaderStyled>
+                    <LeftMenu content="hello world" />
                 </Drawer>
             </Box>
             <MainContentContainer isMinimized={isLeftMenuOpen}>
