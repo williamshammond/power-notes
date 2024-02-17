@@ -1,8 +1,8 @@
 import styles from "+styles/TopBar.module.scss";
+import { Menu } from "@mui/icons-material";
 import { IconButton } from "@mui/material";
 import React from "react";
 import { ProfileMenu } from "./ProfileMenu";
-import { Menu } from "@mui/icons-material";
 
 interface Props {
     readonly handleLeftMenuOpen: () => void;
@@ -18,7 +18,7 @@ export const TopBar = React.memo(function TopBar({
             {!isLeftMenuOpen && (
                 <IconButton
                     aria-label="menu"
-                    color="inherit"
+                    color="primary"
                     onClick={handleLeftMenuOpen}
                     disableRipple={true}
                     edge="start"
