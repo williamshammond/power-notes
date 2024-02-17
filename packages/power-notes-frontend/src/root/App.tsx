@@ -1,4 +1,7 @@
+import { useMediaQuery } from "@mui/material";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { DarkModeProvider } from "../themes/DarkModeContext";
+import { ThemeProviderWithDarkMode } from "../themes/ThemeProviderWithDarkMode";
 import { ErrorPage } from "../error/components/ErrorPage";
 import { HomePage } from "../home/HomePage";
 import { JournalHome } from "../journal/JournalHome";
@@ -38,7 +41,15 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-    return <RouterProvider router={router} />;
+    const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
+
+    return (
+        <ThemeProviderWithDarkMode isDarkMode={prefersDarkMode}>
+            <DarkModeProvider initialDarkMode={prefersDarkMode}>
+                <RouterProvider router={router} />
+            </DarkModeProvider>
+        </ThemeProviderWithDarkMode>
+    );
 }
 
 export default App;
