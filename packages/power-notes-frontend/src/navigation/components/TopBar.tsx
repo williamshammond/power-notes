@@ -1,27 +1,21 @@
-import MenuIcon from "@mui/icons-material/Menu";
-import { AppBar, Button, Drawer, IconButton, Toolbar } from "@mui/material";
+import styles from "+styles/TopBar.module.scss";
+import { IconButton } from "@mui/material";
 import React from "react";
-import styles from "../../../styles/TopBar.module.scss";
 import { ProfileMenu } from "./ProfileMenu";
+import { Menu } from "@mui/icons-material";
 
-export const TopBar = React.memo(function TopBar() {
-    const [isLeftMenuOpen, setIsLeftMenuOpen] = React.useState(false);
+interface Props {
+    readonly handleLeftMenuOpen: () => void;
+    readonly isLeftMenuOpen: boolean;
+}
 
-    const handleLeftMenuOpen = React.useCallback(() => {
-        setIsLeftMenuOpen(true);
-    }, []);
-
-    const handleLeftMenuClose = React.useCallback(() => {
-        setIsLeftMenuOpen(false);
-    }, []);
-
+export const TopBar = React.memo(function TopBar({
+    handleLeftMenuOpen,
+    isLeftMenuOpen,
+}: Props) {
     return (
-        <AppBar position="static">
-            <Toolbar className={styles.toolBar}>
-                <Drawer variant={"persistent"} open={isLeftMenuOpen}>
-                    Test text!
-                    <Button onClick={handleLeftMenuClose}>Close</Button>
-                </Drawer>
+        <React.Fragment>
+            {!isLeftMenuOpen && (
                 <IconButton
                     aria-label="menu"
                     color="inherit"
@@ -31,11 +25,10 @@ export const TopBar = React.memo(function TopBar() {
                     size="large"
                     sx={{ mr: 2 }}
                 >
-                    <MenuIcon />
+                    <Menu />
                 </IconButton>
-
-                <ProfileMenu className={styles.profileMenu} />
-            </Toolbar>
-        </AppBar>
+            )}
+            <ProfileMenu className={styles.profileMenu} />
+        </React.Fragment>
     );
 });
