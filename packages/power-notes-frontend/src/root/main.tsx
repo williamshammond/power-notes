@@ -3,8 +3,6 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
-import { ThemeProvider } from "@mui/material";
-import { BASE_APP_THEME } from "../themes/baseThemes.ts";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
     <React.StrictMode>
@@ -15,9 +13,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
                 redirect_uri: window.location.origin,
             }}
         >
-            <ThemeProvider theme={BASE_APP_THEME}>
-                <App />
-            </ThemeProvider>
+            <App />
         </Auth0Provider>
     </React.StrictMode>
 );
