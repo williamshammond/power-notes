@@ -3,6 +3,7 @@ import { Menu } from "@mui/icons-material";
 import { IconButton } from "@mui/material";
 import React from "react";
 import { ProfileMenu } from "./ProfileMenu";
+import { DarkModeToggleSwitch } from "../../themes/DarkModeToggleSwitch";
 
 interface Props {
     readonly handleLeftMenuOpen: () => void;
@@ -28,6 +29,7 @@ export const TopBar = React.memo(function TopBar({
                     <Menu />
                 </IconButton>
             )}
+            <DarkModeToggleSwitch />
             <ProfileMenu className={styles.profileMenu} />
         </React.Fragment>
     );
