@@ -52,6 +52,7 @@ const MainContentContainer = styled("main", {
 })<{
     isMinimized?: boolean;
 }>(({ theme, isMinimized }) => ({
+    backgroundColor: theme.palette.background.default,
     flexGrow: 1,
     padding: theme.spacing(3),
     transition: theme.transitions.create("margin", {
@@ -80,7 +81,7 @@ export function BasePage() {
     }, []);
 
     return (
-        <React.Fragment>
+        <Box sx={{ height: "100vh", display: "flex", flexDirection: "column" }}>
             <Box sx={{ display: "flex" }}>
                 <AppBarStyled isMinimized={isLeftMenuOpen} position="static">
                     <Toolbar>
@@ -115,6 +116,6 @@ export function BasePage() {
             <MainContentContainer isMinimized={isLeftMenuOpen}>
                 <Outlet />
             </MainContentContainer>
-        </React.Fragment>
+        </Box>
     );
 }

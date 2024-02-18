@@ -1,4 +1,5 @@
 import styles from "+styles/HomePage.module.scss";
+import { Box, Typography, useTheme } from "@mui/material";
 import { HomeSectionCard } from "../navigation/components/HomeSectionCard";
 
 interface SectionInformation {
@@ -13,9 +14,10 @@ const sections: readonly SectionInformation[] = [
 ];
 
 export function HomePage() {
+    const theme = useTheme();
     return (
-        <div>
-            <h1>Home Page</h1>
+        <Box sx={{ color: theme.palette.text.primary }}>
+            <Typography>Home Page</Typography>
             <div className={styles.cardContainer}>
                 {sections.map((section) => (
                     <HomeSectionCard
@@ -25,6 +27,6 @@ export function HomePage() {
                     />
                 ))}
             </div>
-        </div>
+        </Box>
     );
 }

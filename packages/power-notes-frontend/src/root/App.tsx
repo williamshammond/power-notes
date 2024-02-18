@@ -5,10 +5,14 @@ import { HomePage } from "../home/HomePage";
 import { JournalHome } from "../journal/JournalHome";
 import { NoteHome } from "../note/NoteHome";
 import { DarkModeProvider } from "../themes/DarkModeProvider";
-import { ThemeProviderWithDarkMode } from "../themes/ThemeProviderWithDarkMode";
 import { TodoHome } from "../todo/TodoHome";
 import "./App.css";
 import { BasePage } from "./BasePage";
+import { ThemeProviderWithDarkMode } from "../themes/ThemeProviderWithDarkMode";
+import "@fontsource/roboto/300.css";
+import "@fontsource/roboto/400.css";
+import "@fontsource/roboto/500.css";
+import "@fontsource/roboto/700.css";
 
 const router = createBrowserRouter([
     {
