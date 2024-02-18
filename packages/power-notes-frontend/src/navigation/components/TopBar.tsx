@@ -32,6 +32,7 @@ export const TopBar = React.memo(function TopBar({
                     <Menu />
                 </IconButton>
             )}
+            <Box sx={{ color: theme.palette.secondary.main }}>Power Notes</Box>
             <Box sx={{ ml: "auto", display: "flex", alignItems: "center" }}>
                 <DarkModeToggleSwitch />
                 <ProfileMenu />

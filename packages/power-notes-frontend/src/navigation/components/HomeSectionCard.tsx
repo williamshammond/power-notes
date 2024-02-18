@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import styles from "../../../styles/HomeSectionCard.module.scss";
+import { Box } from "@mui/material";
 
 interface Props {
     readonly sectionTitle: string;
@@ -8,8 +9,10 @@ interface Props {
 
 export function HomeSectionCard({ path, sectionTitle }: Props) {
     return (
-        <Link to={path}>
-            <div className={styles.cardContainer}>{sectionTitle}</div>
-        </Link>
+        <Box>
+            <Link to={path}>
+                <div className={styles.cardContainer}>{sectionTitle}</div>
+            </Link>
+        </Box>
     );
 }

@@ -1,6 +1,7 @@
 import styles from "+styles/HomePage.module.scss";
-import { Box, Typography, useTheme } from "@mui/material";
+import { Box, useTheme } from "@mui/material";
 import { HomeSectionCard } from "../navigation/components/HomeSectionCard";
+import { CenteredContent } from "../navigation/components/CenteredContent";
 
 interface SectionInformation {
     readonly title: string;
@@ -16,17 +17,18 @@ const sections: readonly SectionInformation[] = [
 export function HomePage() {
     const theme = useTheme();
     return (
-        <Box sx={{ color: theme.palette.text.primary }}>
-            <Typography>Home Page</Typography>
-            <div className={styles.cardContainer}>
-                {sections.map((section) => (
-                    <HomeSectionCard
-                        key={section.title}
-                        sectionTitle={section.title}
-                        path={section.path}
-                    />
-                ))}
-            </div>
-        </Box>
+        <CenteredContent>
+            <Box sx={{ color: theme.palette.text.primary }}>
+                <div className={styles.cardContainer}>
+                    {sections.map((section) => (
+                        <HomeSectionCard
+                            key={section.title}
+                            sectionTitle={section.title}
+                            path={section.path}
+                        />
+                    ))}
+                </div>
+            </Box>
+        </CenteredContent>
     );
 }
