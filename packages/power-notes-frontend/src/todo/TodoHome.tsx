@@ -1,10 +1,22 @@
 import React from "react";
+import { useIsLeftMenuOpen } from "../navigation/LeftMenuContext";
+import { Typography } from "@mui/material";
+import { CenteredContentWrapper } from "../navigation/components/CenteredContentWrapper";
+import { DynamicWidthContentWrapper } from "../navigation/components/DynamicWidthContentWrapper";
 
 export function TodoHome() {
+    const isLeftMenuOpen = useIsLeftMenuOpen();
+
     return (
         <React.Fragment>
-            <h1>Todo Home</h1>
-            <p>This is the note home page for the Power Notes application.</p>
+            <CenteredContentWrapper>
+                <Typography variant="h3">Todo Home</Typography>
+            </CenteredContentWrapper>
+            <DynamicWidthContentWrapper isMinimized={isLeftMenuOpen}>
+                <Typography variant="body1">
+                    Actual todo page content will go here
+                </Typography>
+            </DynamicWidthContentWrapper>
         </React.Fragment>
     );
 }

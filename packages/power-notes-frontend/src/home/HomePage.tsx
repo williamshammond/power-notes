@@ -27,7 +27,6 @@ export function HomePage() {
                 <Box
                     sx={{
                         color: theme.palette.text.primary,
-                        backgroundColor: theme.palette.background.default,
                     }}
                 >
                     <div className={styles.cardContainer}>
@@ -42,7 +41,7 @@ export function HomePage() {
                 </Box>
             </CenteredContentWrapper>
             {
-                //TODO (whammond): Fill in DynamicWidthContent with content that should move later on
+                //TODO (whammond): Fill in DynamicWidthContent with content that should move later one
             }
             <DynamicWidthContentWrapper isMinimized={isLeftMenuOpen}>
                 Test!
