@@ -1,4 +1,3 @@
-import { Box } from "@mui/material";
 import React from "react";
 import { useIsLeftMenuOpen } from "../../navigation/LeftMenuContext";
 import { CenteredContentWrapper } from "./CenteredContentWrapper";
@@ -16,22 +15,11 @@ export function CenteredAndDynamicWidthContent({
     const isLeftMenuOpen = useIsLeftMenuOpen();
 
     return (
-        <Box
-            sx={{
-                alignItems: "center",
-                display: "flex",
-                flexDirection: "column",
-            }}
-        >
-            <CenteredContentWrapper sx={{ alignSelf: "flex-start" }}>
-                {centeredContent}
-            </CenteredContentWrapper>
-            <DynamicWidthContentWrapper
-                isMinimized={isLeftMenuOpen}
-                sx={{ alignSelf: "flex-end" }}
-            >
+        <React.Fragment>
+            <CenteredContentWrapper>{centeredContent}</CenteredContentWrapper>
+            <DynamicWidthContentWrapper isMinimized={isLeftMenuOpen}>
                 {dynamicContent}
             </DynamicWidthContentWrapper>
-        </Box>
+        </React.Fragment>
     );
 }
