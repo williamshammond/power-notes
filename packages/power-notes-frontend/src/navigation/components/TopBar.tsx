@@ -1,5 +1,5 @@
 import { Menu } from "@mui/icons-material";
-import { Box, IconButton, useTheme } from "@mui/material";
+import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import React from "react";
 import { DarkModeToggleSwitch } from "../../themes/DarkModeToggleSwitch";
 import { ProfileMenu } from "./ProfileMenu";
@@ -40,7 +40,7 @@ export const TopBar = React.memo(function TopBar({
                         "&:hover": { color: theme.palette.primary.dark },
                     }}
                 >
-                    Power Notes
+                    <Typography variant="h5">Power Notes</Typography>
                 </Box>
             </Link>
             <Box sx={{ ml: "auto", display: "flex", alignItems: "center" }}>
