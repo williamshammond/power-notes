@@ -10,10 +10,10 @@ import {
 } from "@mui/material";
 import React from "react";
 import { Outlet } from "react-router-dom";
-import { TopBar } from "../navigation/components/TopBar";
-import { LeftMenu } from "../navigation/components/LeftMenu";
 import { LEFT_MENU_WIDTH } from "../constants";
 import { LeftMenuContextProvider } from "../navigation/LeftMenuContextProvider";
+import { LeftMenu } from "../navigation/components/LeftMenu";
+import { TopBar } from "../navigation/components/TopBar";
 
 // NOTE (whammond): Heavily sourced from MUI's Drawer documentation @ https://mui.com/material-ui/react-drawer/
 
@@ -24,6 +24,7 @@ interface AppBarStyleProps extends AppBarProps {
 const AppBarStyled = styled(AppBar, {
     shouldForwardProp: (prop) => prop !== "isMinimized",
 })<AppBarStyleProps>(({ isMinimized, theme }) => ({
+    overflow: "hidden",
     transition: theme.transitions.create(["margin", "width"], {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,
@@ -31,6 +32,7 @@ const AppBarStyled = styled(AppBar, {
     ...(isMinimized && {
         width: `calc(100% - ${LEFT_MENU_WIDTH}px)`,
         marginLeft: `${LEFT_MENU_WIDTH}px`,
+        overflow: "hidden",
         transition: theme.transitions.create(["margin", "width"], {
             easing: theme.transitions.easing.easeOut,
             duration: theme.transitions.duration.enteringScreen,
@@ -45,28 +47,6 @@ const DrawerHeaderStyled = styled("div")(({ theme }) => ({
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
     justifyContent: "flex-end",
-}));
-
-const MainContentContainer = styled("main", {
-    shouldForwardProp: (prop) => prop !== "isMinimized",
-})<{
-    isMinimized?: boolean;
-}>(({ theme, isMinimized }) => ({
-    backgroundColor: theme.palette.background.default,
-    flexGrow: 1,
-    padding: theme.spacing(3),
-    transition: theme.transitions.create("margin", {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
-    }),
-    marginLeft: `-${LEFT_MENU_WIDTH}px`,
-    ...(isMinimized && {
-        transition: theme.transitions.create("margin", {
-            easing: theme.transitions.easing.easeOut,
-            duration: theme.transitions.duration.enteringScreen,
-        }),
-        marginLeft: 0,
-    }),
 }));
 
 export function BasePage() {
@@ -87,6 +67,7 @@ export function BasePage() {
                     height: "100vh",
                     display: "flex",
                     flexDirection: "column",
+                    overflow: "hidden",
                 }}
             >
                 <Box sx={{ display: "flex" }}>
@@ -123,9 +104,7 @@ export function BasePage() {
                         <LeftMenu content="hello world" />
                     </Drawer>
                 </Box>
-                <MainContentContainer isMinimized={isLeftMenuOpen}>
-                    <Outlet />
-                </MainContentContainer>
+                <Outlet />
             </Box>
         </LeftMenuContextProvider>
     );

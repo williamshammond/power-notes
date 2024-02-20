@@ -1,7 +1,10 @@
 import styles from "+styles/HomePage.module.scss";
 import { Box, useTheme } from "@mui/material";
+import React from "react";
+import { useIsLeftMenuOpen } from "../navigation/LeftMenuContext";
+import { CenteredContentWrapper } from "../navigation/components/CenteredContentWrapper";
+import { DynamicWidthContentWrapper } from "../navigation/components/DynamicWidthContentWrapper";
 import { HomeSectionCard } from "../navigation/components/HomeSectionCard";
-import { CenteredContent } from "../navigation/components/CenteredContent";
 
 interface SectionInformation {
     readonly title: string;
@@ -16,19 +19,34 @@ const sections: readonly SectionInformation[] = [
 
 export function HomePage() {
     const theme = useTheme();
+    const isLeftMenuOpen = useIsLeftMenuOpen();
+
     return (
-        <CenteredContent>
-            <Box sx={{ color: theme.palette.text.primary }}>
-                <div className={styles.cardContainer}>
-                    {sections.map((section) => (
-                        <HomeSectionCard
-                            key={section.title}
-                            sectionTitle={section.title}
-                            path={section.path}
-                        />
-                    ))}
-                </div>
-            </Box>
-        </CenteredContent>
+        <React.Fragment>
+            <CenteredContentWrapper>
+                <Box
+                    sx={{
+                        color: theme.palette.text.primary,
+                        backgroundColor: theme.palette.background.default,
+                    }}
+                >
+                    <div className={styles.cardContainer}>
+                        {sections.map((section) => (
+                            <HomeSectionCard
+                                key={section.title}
+                                sectionTitle={section.title}
+                                path={section.path}
+                            />
+                        ))}
+                    </div>
+                </Box>
+            </CenteredContentWrapper>
+            {
+                //TODO (whammond): Fill in DynamicWidthContent with content that should move later on
+            }
+            <DynamicWidthContentWrapper isMinimized={isLeftMenuOpen}>
+                Test!
+            </DynamicWidthContentWrapper>
+        </React.Fragment>
     );
 }
