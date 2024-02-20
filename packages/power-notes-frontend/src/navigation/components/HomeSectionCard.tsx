@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import styles from "../../../styles/HomeSectionCard.module.scss";
+import styles from "+styles/HomeSectionCard.module.scss";
 import { Box } from "@mui/material";
 
 interface Props {

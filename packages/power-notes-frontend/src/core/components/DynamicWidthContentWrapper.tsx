@@ -1,9 +1,11 @@
-import { SxProps, Theme, styled } from "@mui/material";
-import { LEFT_MENU_WIDTH } from "../../constants";
+import { styled } from "@mui/material";
+import { LEFT_MENU_WIDTH } from "../constants";
+import { WithSx } from "../types/WithSx";
 
-interface DynamicWidthContentWrapperProps extends React.PropsWithChildren {
+interface DynamicWidthContentWrapperProps
+    extends React.PropsWithChildren,
+        WithSx {
     readonly isMinimized: boolean;
-    readonly sx?: SxProps<Theme>;
 }
 
 export const DynamicWidthContentWrapper = ({

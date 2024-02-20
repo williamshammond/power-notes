@@ -1,9 +1,9 @@
 import styles from "+styles/HomePage.module.scss";
 import { Box, useTheme } from "@mui/material";
 import React from "react";
+import { CenteredContentWrapper } from "../core/components/CenteredContentWrapper";
+import { DynamicWidthContentWrapper } from "../core/components/DynamicWidthContentWrapper";
 import { useIsLeftMenuOpen } from "../navigation/LeftMenuContext";
-import { CenteredContentWrapper } from "../navigation/components/CenteredContentWrapper";
-import { DynamicWidthContentWrapper } from "../navigation/components/DynamicWidthContentWrapper";
 import { HomeSectionCard } from "../navigation/components/HomeSectionCard";
 
 interface SectionInformation {

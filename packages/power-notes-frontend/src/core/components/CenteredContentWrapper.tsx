@@ -1,8 +1,7 @@
-import { Box, SxProps, Theme, useTheme } from "@mui/material";
+import { Box, useTheme } from "@mui/material";
+import { WithSx } from "../types/WithSx";
 
-interface CenteredContentWrapper extends React.PropsWithChildren {
-    readonly sx?: SxProps<Theme>;
-}
+interface CenteredContentWrapper extends React.PropsWithChildren, WithSx {}
 
 export const CenteredContentWrapper = ({
     children,

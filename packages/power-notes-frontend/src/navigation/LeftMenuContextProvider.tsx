@@ -1,8 +1,8 @@
 import { LeftMenuContext } from "./LeftMenuContext";
 
 interface Props {
-    isLeftMenuOpen: boolean;
-    children: React.ReactNode;
+    readonly isLeftMenuOpen: boolean;
+    readonly children: React.ReactNode;
 }
 
 export function LeftMenuContextProvider({ isLeftMenuOpen, children }: Props) {

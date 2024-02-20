@@ -1,7 +1,7 @@
 import React from "react";
 
 interface LeftMenuContext {
-    isLeftMenuOpen: boolean;
+    readonly isLeftMenuOpen: boolean;
 }
 
 export const LeftMenuContext = React.createContext<LeftMenuContext>({

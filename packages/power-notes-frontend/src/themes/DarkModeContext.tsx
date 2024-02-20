@@ -1,8 +1,8 @@
 import React from "react";
 
 interface DarkModeContextValue {
-    isDarkMode: boolean;
-    toggleDarkMode: () => void;
+    readonly isDarkMode: boolean;
+    readonly toggleDarkMode: () => void;
 }
 
 export const DarkModeContext = React.createContext<DarkModeContextValue>({

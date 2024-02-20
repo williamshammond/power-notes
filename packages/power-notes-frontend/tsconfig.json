@@ -27,6 +27,10 @@
             "+styles/*": ["styles/*"]
         }
     },
-    "include": ["src"],
+    "include": [
+        "src",
+        "src/core/components/CenteredAndDynamicWidthContent.tsx",
+        "src/core/components/CenteredContent.tsx"
+    ],
     "references": [{ "path": "./tsconfig.node.json" }]
 }

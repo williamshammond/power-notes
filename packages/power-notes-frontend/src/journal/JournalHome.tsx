@@ -1,5 +1,5 @@
 import { Typography } from "@mui/material";
-import { CenteredAndDynamicWidthContent } from "../navigation/components/CenteredAndDynamicWidthContent";
+import { CenteredAndDynamicWidthContent } from "../core/components/CenteredAndDynamicWidthContent";
 
 export function JournalHome() {
     return (

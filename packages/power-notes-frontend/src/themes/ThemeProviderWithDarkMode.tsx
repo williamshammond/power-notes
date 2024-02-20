@@ -3,9 +3,7 @@ import React from "react";
 import { useIsDarkMode } from "./DarkModeContext";
 import { grey } from "@mui/material/colors";
 
-interface ThemeProviderWithDarkModeProps {
-    readonly children: React.ReactNode;
-}
+interface ThemeProviderWithDarkModeProps extends React.PropsWithChildren {}
 
 export function ThemeProviderWithDarkMode({
     children,

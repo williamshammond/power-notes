@@ -1,11 +1,8 @@
-import { Box, Switch, SxProps, Theme } from "@mui/material";
+import { Box, Switch } from "@mui/material";
+import { WithSx } from "../core/types/WithSx";
 import { useDarkModeContext } from "./DarkModeContext";
 
-interface Props {
-    sx?: SxProps<Theme>;
-}
-
-export function DarkModeToggleSwitch({ sx }: Props) {
+export function DarkModeToggleSwitch({ sx }: WithSx) {
     const { isDarkMode, toggleDarkMode } = useDarkModeContext();
 
     return (

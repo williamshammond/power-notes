@@ -1,12 +1,12 @@
+import { Box } from "@mui/material";
 import React from "react";
-import { useIsLeftMenuOpen } from "../LeftMenuContext";
+import { useIsLeftMenuOpen } from "../../navigation/LeftMenuContext";
 import { CenteredContentWrapper } from "./CenteredContentWrapper";
 import { DynamicWidthContentWrapper } from "./DynamicWidthContentWrapper";
-import { Box } from "@mui/material";
 
 interface CenteredAndDynamicContentProps {
-    centeredContent: React.ReactNode;
-    dynamicContent: React.ReactNode;
+    readonly centeredContent: React.ReactNode;
+    readonly dynamicContent: React.ReactNode;
 }
 
 export function CenteredAndDynamicWidthContent({

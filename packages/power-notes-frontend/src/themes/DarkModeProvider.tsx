@@ -1,8 +1,7 @@
 import React from "react";
 import { DarkModeContext } from "./DarkModeContext";
 
-interface DarkModeProviderProps {
-    readonly children: React.ReactNode;
+interface DarkModeProviderProps extends React.PropsWithChildren {
     readonly initialDarkMode?: boolean;
 }
 

@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import React from "react";
 import { Outlet } from "react-router-dom";
-import { LEFT_MENU_WIDTH } from "../constants";
+import { LEFT_MENU_WIDTH } from "../core/constants";
 import { LeftMenuContextProvider } from "../navigation/LeftMenuContextProvider";
 import { LeftMenu } from "../navigation/components/LeftMenu";
 import { TopBar } from "../navigation/components/TopBar";
@@ -18,7 +18,7 @@ import { TopBar } from "../navigation/components/TopBar";
 // NOTE (whammond): Heavily sourced from MUI's Drawer documentation @ https://mui.com/material-ui/react-drawer/
 
 interface AppBarStyleProps extends AppBarProps {
-    isMinimized: boolean;
+    readonly isMinimized: boolean;
 }
 
 const AppBarStyled = styled(AppBar, {
