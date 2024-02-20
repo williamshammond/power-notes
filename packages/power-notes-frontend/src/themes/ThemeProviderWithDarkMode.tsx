@@ -25,13 +25,18 @@ function createDarkModeAwareTheme(isDarkMode: boolean): Theme {
         isDarkMode == true
             ? {
                   palette: {
+                      common: {
+                          black: "#000",
+                          white: "#fff",
+                      },
                       mode: isDarkMode ? "dark" : "light",
                       primary: {
                           main: "#121212",
+                          dark: "#000000",
                       },
                       secondary: {
                           main: "#fffb94",
-                          dark: "#fffb94",
+                          light: "#fcfabd",
                       },
                       background: { default: "#121212" },
                       text: {
@@ -42,12 +47,18 @@ function createDarkModeAwareTheme(isDarkMode: boolean): Theme {
               }
             : {
                   palette: {
+                      common: {
+                          black: "#000",
+                          white: "#fff",
+                      },
                       mode: isDarkMode ? "dark" : "light",
                       primary: {
                           main: "#fffb94",
+                          dark: "#ded954",
                       },
                       secondary: {
                           main: "#121212",
+                          light: "#242424",
                       },
                       background: { default: "#fffefc" },
                       text: { primary: grey[900], secondary: grey[800] },

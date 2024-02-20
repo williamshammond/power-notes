@@ -3,6 +3,7 @@ import { Box, IconButton, useTheme } from "@mui/material";
 import React from "react";
 import { DarkModeToggleSwitch } from "../../themes/DarkModeToggleSwitch";
 import { ProfileMenu } from "./ProfileMenu";
+import { Link } from "react-router-dom";
 
 interface Props {
     readonly handleLeftMenuOpen: () => void;
@@ -32,7 +33,16 @@ export const TopBar = React.memo(function TopBar({
                     <Menu />
                 </IconButton>
             )}
-            <Box sx={{ color: theme.palette.secondary.main }}>Power Notes</Box>
+            <Link to="/" style={{ textDecoration: "none" }}>
+                <Box
+                    sx={{
+                        color: theme.palette.secondary.main,
+                        "&:hover": { color: theme.palette.primary.dark },
+                    }}
+                >
+                    Power Notes
+                </Box>
+            </Link>
             <Box sx={{ ml: "auto", display: "flex", alignItems: "center" }}>
                 <DarkModeToggleSwitch />
                 <ProfileMenu />
