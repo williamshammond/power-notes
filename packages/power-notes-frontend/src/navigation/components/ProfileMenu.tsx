@@ -7,7 +7,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { UserProfile } from "../../auth/components/UserProfile";
 
 interface Props {
-    className?: string;
+    readonly className?: string;
 }
 
 export const ProfileMenu = React.memo(function ProfileMenu({

@@ -1,18 +1,31 @@
+import { Card, CardActionArea, CardContent, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
-import styles from "+styles/HomeSectionCard.module.scss";
-import { Box } from "@mui/material";
 
 interface Props {
-    readonly sectionTitle: string;
     readonly path: string;
+    readonly sectionTitle: string;
+    readonly sectionInformation: string;
 }
 
-export function HomeSectionCard({ path, sectionTitle }: Props) {
+export function HomeSectionCard({
+    path,
+    sectionInformation,
+    sectionTitle,
+}: Props) {
     return (
-        <Box>
-            <Link to={path}>
-                <div className={styles.cardContainer}>{sectionTitle}</div>
-            </Link>
-        </Box>
+        <Link to={path} style={{ textDecoration: "none" }}>
+            <Card sx={{ maxWidth: 345, minHeight: 500 }}>
+                <CardActionArea sx={{ maxWidth: 345, minHeight: 500 }}>
+                    <CardContent>
+                        <Typography gutterBottom variant="h5" component="div">
+                            {sectionTitle}
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                            {sectionInformation}
+                        </Typography>
+                    </CardContent>
+                </CardActionArea>
+            </Card>
+        </Link>
     );
 }
