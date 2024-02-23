@@ -1,27 +1,35 @@
+import { Box } from "@mui/material";
 import React from "react";
 
-interface Props {
-    readonly content: string;
+interface FolderDataResponse {
+    folders: FolderData;
 }
 
-export const LeftMenu = function LeftMenu({ content }: Props) {
-    const [message, setMessage] = React.useState("");
+interface FolderData {
+    folders: string[];
+}
+
+export const LeftMenu = function LeftMenu() {
+    const [folders, setFolders] = React.useState<FolderData>({ folders: [] });
 
     React.useEffect(() => {
-        fetch("http://localhost:3000/")
+        fetch("http://localhost:3000/folders")
             .then((res) => {
                 console.log(res);
-                return res.json();
+                return res.json() as Promise<FolderDataResponse>;
             })
-            .then((data) => setMessage(data.testMessage));
+            .then((data) => setFolders(data.folders));
     }, []);
 
-    console.log(message);
+    console.log(folders);
 
     return (
-        <div>
-            {content}
-            {message}
-        </div>
+        <Box>
+            {folders != null
+                ? folders.folders.map((folder) => (
+                      <Box key={folder}>{folder}</Box>
+                  ))
+                : "Nothing yet"}
+        </Box>
     );
 };
