@@ -18,8 +18,7 @@ app.get("/", (req, res) => {
     res.json({ testMessage: "Hello world!!!" });
 });
 app.get("/folders", (req, res) => {
-    const folders = mockData_1.MOCK_USER_DATA;
-    res.json({ folders: folders });
+    res.json(mockData_1.MOCK_FULL_FOLDER_DATA);
 });
 app.get("/folders/:folderId", (req, res) => {
     const folders = mockData_1.MOCK_USER_DATA;

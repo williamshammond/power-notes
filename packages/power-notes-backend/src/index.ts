@@ -1,7 +1,11 @@
 import cors from "cors";
 import dotenv from "dotenv";
 import express, { Express, Request, Response } from "express";
-import { MOCK_FOLDERS_DATA, MOCK_USER_DATA } from "./mock-data/mockData";
+import {
+    MOCK_FOLDERS_DATA,
+    MOCK_FULL_FOLDER_DATA,
+    MOCK_USER_DATA,
+} from "./mock-data/mockData";
 
 dotenv.config({ path: ".env.local" });
 dotenv.config();
@@ -18,9 +22,7 @@ app.get("/", (req: Request, res: Response) => {
 });
 
 app.get("/folders", (req: Request, res: Response) => {
-    const folders = MOCK_USER_DATA;
-
-    res.json({ folders: folders });
+    res.json(MOCK_FULL_FOLDER_DATA);
 });
 
 app.get("/folders/:folderId", (req: Request, res: Response) => {
