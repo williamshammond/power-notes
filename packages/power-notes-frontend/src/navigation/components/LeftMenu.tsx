@@ -97,15 +97,19 @@ function displayFolder(folder: Folder, layer: number): JSX.Element {
                 ))}
                 {folder.todos.length > 0 && <Divider>Todos</Divider>}
                 {folder.todos.map((todo) => (
-                    <Box key={todo.id} sx={{ padding: "2 0 2 0" }}>
-                        {todo.name}
-                    </Box>
+                    <Link to={`/todo/${todo.id}`} key={todo.id}>
+                        <Box key={todo.id} sx={{ padding: "2 0 2 0" }}>
+                            {todo.name}
+                        </Box>
+                    </Link>
                 ))}
                 {folder.journals.length > 0 && <Divider>Journal</Divider>}
                 {folder.journals.map((journal) => (
-                    <Box key={journal.id} sx={{ padding: "2 0 2 0" }}>
-                        {journal.name}
-                    </Box>
+                    <Link to={`/journal/${journal.id}`} key={journal.id}>
+                        <Box key={journal.id} sx={{ padding: "2 0 2 0" }}>
+                            {journal.name}
+                        </Box>
+                    </Link>
                 ))}
             </AccordionDetails>
         </Accordion>
