@@ -228,7 +228,7 @@ interface Note {
 }
 
 export const MOCK_NOTES_DATA: { [id: string]: Note } = {
-    Lq6WNY1cmDNz: {
+    "ba0aed9a-06d8-4f2b-b7a4-a41805d27301": {
         name: "Note 1",
         sections: [
             {
@@ -251,11 +251,11 @@ export const MOCK_NOTES_DATA: { [id: string]: Note } = {
         ],
     },
     ZiOFG60hBJ8d: {
-        name: "Note 1",
+        name: "Note 3",
         sections: [
             {
-                title: "Section 1",
-                content: "This is the content of section 1",
+                title: "Section 3",
+                content: "This is the content of section 3",
             },
         ],
     },

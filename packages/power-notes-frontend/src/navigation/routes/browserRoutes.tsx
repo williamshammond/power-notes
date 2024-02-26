@@ -5,6 +5,9 @@ import { JournalHome } from "../../journal/JournalHome";
 import { NoteHome } from "../../note/NoteHome";
 import { BasePage } from "../../root/BasePage";
 import { TodoHome } from "../../todo/TodoHome";
+import { NoteFileView } from "../../note/NoteFileView";
+import { JournalFileView } from "../../journal/JournalFileView";
+import { TodoFileView } from "../../todo/TodoFileView";
 
 export const BASE_APP_ROUTER = createBrowserRouter([
     {
@@ -18,8 +21,13 @@ export const BASE_APP_ROUTER = createBrowserRouter([
                 errorElement: <ErrorPage />,
             },
             {
-                path: "note",
+                path: "notes",
                 element: <NoteHome />,
+                errorElement: <ErrorPage />,
+            },
+            {
+                path: "note/:noteId",
+                element: <NoteFileView />,
                 errorElement: <ErrorPage />,
             },
             {
@@ -28,8 +36,18 @@ export const BASE_APP_ROUTER = createBrowserRouter([
                 errorElement: <ErrorPage />,
             },
             {
+                path: "todo/:todoId",
+                element: <TodoFileView />,
+                errorElement: <ErrorPage />,
+            },
+            {
                 path: "journal",
                 element: <JournalHome />,
+                errorElement: <ErrorPage />,
+            },
+            {
+                path: "journal/:journalId",
+                element: <JournalFileView />,
                 errorElement: <ErrorPage />,
             },
         ],

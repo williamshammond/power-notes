@@ -7,6 +7,7 @@ import {
     Divider,
 } from "@mui/material";
 import React from "react";
+import { Link } from "react-router-dom";
 
 interface Document {
     readonly id: string;
@@ -81,9 +82,8 @@ function displayFolder(folder: Folder, layer: number): JSX.Element {
                 )}
                 {folder.notes.length > 0 && <Divider>Notes</Divider>}
                 {folder.notes.map((note) => (
-                    <React.Fragment key={note.id}>
+                    <Link to={`/note/${note.id}`} key={note.id}>
                         <Box
-                            key={note.id}
                             sx={{
                                 height: "30px",
                                 padding: "2 0 2 0",
@@ -93,7 +93,7 @@ function displayFolder(folder: Folder, layer: number): JSX.Element {
                         >
                             {note.name}
                         </Box>
-                    </React.Fragment>
+                    </Link>
                 ))}
                 {folder.todos.length > 0 && <Divider>Todos</Divider>}
                 {folder.todos.map((todo) => (
