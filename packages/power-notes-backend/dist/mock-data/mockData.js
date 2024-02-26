@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.MOCK_JOURNALS_DATA = exports.MOCK_TODOs_DATA = exports.MOCK_NOTES_DATA = exports.MOCK_FOLDERS_DATA = exports.MOCK_FULL_FOLDER_DATA = exports.MOCK_USER_DATA = void 0;
+exports.MOCK_JOURNALS_DATA = exports.MOCK_TODOS_DATA = exports.MOCK_NOTES_DATA = exports.MOCK_FOLDERS_DATA = exports.MOCK_FULL_FOLDER_DATA = exports.MOCK_USER_DATA = void 0;
 exports.MOCK_USER_DATA = {
     folders: ["QfsoXeQwUlfK", "wEg6Bmc1Q3Xk", "mqLxjuT0X2Pg"],
 };
@@ -240,13 +240,18 @@ exports.MOCK_NOTES_DATA = {
         ],
     },
 };
-exports.MOCK_TODOs_DATA = {
+exports.MOCK_TODOS_DATA = {
     oCoI28TsuAZw: {
         name: "Todo List 1",
-        tasks: {
-            subtasks: [{ name: "Subtask 1", completed: false }],
-        },
+        tasks: [
+            {
+                name: "Task 1",
+                subtasks: [{ name: "Subtask 1", completed: false }],
+                completed: false,
+            },
+        ],
         content: "This is the content of section 1",
+        completed: false,
     },
 };
 exports.MOCK_JOURNALS_DATA = {

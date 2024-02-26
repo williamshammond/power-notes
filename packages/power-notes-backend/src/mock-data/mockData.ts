@@ -217,7 +217,17 @@ export const MOCK_FOLDERS_DATA: { [id: string]: Folder } = {
     },
 };
 
-export const MOCK_NOTES_DATA = {
+interface Section {
+    readonly title: string;
+    readonly content: string;
+}
+
+interface Note {
+    readonly name: string;
+    readonly sections: ReadonlyArray<Section>;
+}
+
+export const MOCK_NOTES_DATA: { [id: string]: Note } = {
     Lq6WNY1cmDNz: {
         name: "Note 1",
         sections: [
@@ -251,17 +261,44 @@ export const MOCK_NOTES_DATA = {
     },
 };
 
-export const MOCK_TODOs_DATA = {
+interface Task {
+    readonly completed: boolean;
+    readonly content?: string;
+    readonly name: string;
+    readonly subtasks?: ReadonlyArray<Task>;
+}
+
+interface Todo {
+    readonly completed: boolean;
+    readonly content?: string;
+    readonly name: string;
+    readonly tasks: ReadonlyArray<Task>;
+}
+
+export const MOCK_TODOS_DATA: { [id: string]: Todo } = {
     oCoI28TsuAZw: {
         name: "Todo List 1",
-        tasks: {
-            subtasks: [{ name: "Subtask 1", completed: false }],
-        },
+        tasks: [
+            {
+                name: "Task 1",
+                subtasks: [{ name: "Subtask 1", completed: false }],
+                completed: false,
+            },
+        ],
         content: "This is the content of section 1",
+        completed: false,
     },
 };
 
-export const MOCK_JOURNALS_DATA = {
+interface Journal {
+    readonly name: string;
+    readonly content: {
+        readonly text: string;
+        readonly media: string;
+    };
+}
+
+export const MOCK_JOURNALS_DATA: { [id: string]: Journal } = {
     yK9gKwpbMgPL: {
         name: "Journal 1",
         content: {

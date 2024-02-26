@@ -17,15 +17,38 @@ const port = (_a = process.env.PORT) !== null && _a !== void 0 ? _a : 3000;
 app.get("/", (req, res) => {
     res.json({ testMessage: "Hello world!!!" });
 });
-app.get("/folders", (req, res) => {
+app.get("/folders", (_req, res) => {
     res.json(mockData_1.MOCK_FULL_FOLDER_DATA);
 });
 app.get("/folders/:folderId", (req, res) => {
-    const folders = mockData_1.MOCK_USER_DATA;
     if (req.params.folderId) {
         res.json({ folder: mockData_1.MOCK_FOLDERS_DATA[req.params.folderId] });
     }
-    res.json({ folders: folders });
+    throw new Error("Folder not found");
+});
+app.get("/note/:noteId", (req, res) => {
+    if (req.params.noteId != null &&
+        mockData_1.MOCK_NOTES_DATA[req.params.noteId] != null) {
+        res.json(mockData_1.MOCK_NOTES_DATA[req.params.noteId]);
+    }
+    else {
+        res.json({
+            message: "Note not found",
+        });
+    }
+});
+app.get("/todo/:todoId", (req, res) => {
+    if (req.params.todoId && mockData_1.MOCK_TODOS_DATA[req.params.todoId] != null) {
+        res.json(mockData_1.MOCK_TODOS_DATA[req.params.todoId]);
+    }
+    throw new Error("Todo List not found");
+});
+app.get("/journal/:journalId", (req, res) => {
+    if (req.params.journalId &&
+        mockData_1.MOCK_JOURNALS_DATA[req.params.journalId] != null) {
+        res.json(mockData_1.MOCK_JOURNALS_DATA[req.params.journalId]);
+    }
+    throw new Error("Journal not found");
 });
 app.listen(port, () => {
     console.log(`[server]: Server is running at http://localhost:${port}`);
