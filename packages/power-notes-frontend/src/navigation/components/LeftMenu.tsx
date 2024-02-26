@@ -5,6 +5,7 @@ import {
     AccordionSummary,
     Box,
     Divider,
+    MenuItem,
 } from "@mui/material";
 import React from "react";
 import { Link } from "react-router-dom";
@@ -82,34 +83,45 @@ function displayFolder(folder: Folder, layer: number): JSX.Element {
                 )}
                 {folder.notes.length > 0 && <Divider>Notes</Divider>}
                 {folder.notes.map((note) => (
-                    <Link to={`/note/${note.id}`} key={note.id}>
-                        <Box
-                            sx={{
-                                height: "30px",
-                                padding: "2 0 2 0",
-                                borderTop: "1px solid gray",
-                                borderBottom: "1px solid gray",
-                            }}
-                        >
-                            {note.name}
-                        </Box>
-                    </Link>
+                    <MenuItem
+                        key={note.id}
+                        component={Link}
+                        to={`/note/${note.id}`}
+                        style={{
+                            color: "inherit",
+                            textDecoration: "inherit",
+                        }}
+                    >
+                        {note.name}
+                    </MenuItem>
                 ))}
                 {folder.todos.length > 0 && <Divider>Todos</Divider>}
                 {folder.todos.map((todo) => (
-                    <Link to={`/todo/${todo.id}`} key={todo.id}>
-                        <Box key={todo.id} sx={{ padding: "2 0 2 0" }}>
-                            {todo.name}
-                        </Box>
-                    </Link>
+                    <MenuItem
+                        key={todo.id}
+                        component={Link}
+                        to={`/todo/${todo.id}`}
+                        style={{
+                            color: "inherit",
+                            textDecoration: "inherit",
+                        }}
+                    >
+                        {todo.name}
+                    </MenuItem>
                 ))}
                 {folder.journals.length > 0 && <Divider>Journal</Divider>}
                 {folder.journals.map((journal) => (
-                    <Link to={`/journal/${journal.id}`} key={journal.id}>
-                        <Box key={journal.id} sx={{ padding: "2 0 2 0" }}>
-                            {journal.name}
-                        </Box>
-                    </Link>
+                    <MenuItem
+                        key={journal.id}
+                        component={Link}
+                        to={`/journal/${journal.id}`}
+                        style={{
+                            color: "inherit",
+                            textDecoration: "inherit",
+                        }}
+                    >
+                        {journal.name}
+                    </MenuItem>
                 ))}
             </AccordionDetails>
         </Accordion>
@@ -120,7 +132,7 @@ function calculateBackground(layer: number): string {
     const baseSaturation = 0;
     const baseLightness = 0;
 
-    const lightnessIncrement = 4;
+    const lightnessIncrement = 2;
     const adjustedLightness = baseLightness + layer * lightnessIncrement;
 
     const finalLightness = Math.min(adjustedLightness, 100);
