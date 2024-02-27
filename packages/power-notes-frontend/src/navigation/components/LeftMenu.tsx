@@ -4,7 +4,6 @@ import {
     AccordionDetails,
     AccordionSummary,
     Box,
-    Divider,
     MenuItem,
 } from "@mui/material";
 import React from "react";
@@ -58,67 +57,69 @@ function displayFolder(folder: Folder, layer: number): JSX.Element {
     return (
         <Accordion
             key={folder.id}
-            sx={{ backgroundColor: calculateBackground(layer) }}
             defaultExpanded={false}
+            disableGutters={true}
         >
-            <AccordionSummary expandIcon={<ExpandMore />} id="panel3-header">
+            <AccordionSummary
+                sx={{
+                    flexDirection: "row-reverse",
+                    "& .MuiAccordionSummary-expandIconWrapper.Mui-expanded": {
+                        transform: "rotate(-90deg)",
+                    },
+                }}
+                expandIcon={<ExpandMore />}
+                id="panel3-header"
+            >
                 {folder.name}
             </AccordionSummary>
-            <AccordionDetails sx={{ padding: "0" }}>
+            <AccordionDetails sx={{ padding: `0 0 0 10px` }}>
                 {folder.subfolders.length === 0 &&
                     folder.notes.length === 0 &&
                     folder.todos.length === 0 &&
                     folder.journals.length === 0 && (
-                        <Box
-                            sx={{
-                                backgroundColor: calculateBackground(layer + 1),
-                                padding: "2 0 2 0",
-                            }}
-                        >
-                            No content in folder
-                        </Box>
+                        <MenuItem>No content</MenuItem>
                     )}
                 {folder.subfolders.map((subfolder) =>
                     displayFolder(subfolder, layer + 1)
                 )}
-                {folder.notes.length > 0 && <Divider>Notes</Divider>}
                 {folder.notes.map((note) => (
                     <MenuItem
-                        key={note.id}
                         component={Link}
-                        to={`/note/${note.id}`}
+                        key={note.id}
                         style={{
                             color: "inherit",
                             textDecoration: "inherit",
                         }}
+                        sx={{ pl: `30px` }}
+                        to={`/note/${note.id}`}
                     >
                         {note.name}
                     </MenuItem>
                 ))}
-                {folder.todos.length > 0 && <Divider>Todos</Divider>}
                 {folder.todos.map((todo) => (
                     <MenuItem
-                        key={todo.id}
                         component={Link}
-                        to={`/todo/${todo.id}`}
+                        key={todo.id}
                         style={{
                             color: "inherit",
                             textDecoration: "inherit",
                         }}
+                        sx={{ pl: `30px` }}
+                        to={`/todo/${todo.id}`}
                     >
                         {todo.name}
                     </MenuItem>
                 ))}
-                {folder.journals.length > 0 && <Divider>Journal</Divider>}
                 {folder.journals.map((journal) => (
                     <MenuItem
                         key={journal.id}
                         component={Link}
-                        to={`/journal/${journal.id}`}
                         style={{
                             color: "inherit",
                             textDecoration: "inherit",
                         }}
+                        sx={{ pl: `30px` }}
+                        to={`/journal/${journal.id}`}
                     >
                         {journal.name}
                     </MenuItem>

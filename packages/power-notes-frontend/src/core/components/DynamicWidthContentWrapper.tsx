@@ -1,5 +1,5 @@
 import { styled } from "@mui/material";
-import { LEFT_MENU_WIDTH } from "../constants";
+import { LEFT_MENU_WIDTH_PX } from "../constants";
 import { WithSx } from "../types/WithSx";
 
 interface DynamicWidthContentWrapperProps
@@ -35,7 +35,7 @@ const DynamicWidthContentWrapperInternal = styled("main", {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,
     }),
-    marginLeft: `-${LEFT_MENU_WIDTH}px`,
+    marginLeft: `-${LEFT_MENU_WIDTH_PX}px`,
     ...(isMinimized && {
         transition: theme.transitions.create("margin", {
             easing: theme.transitions.easing.easeOut,

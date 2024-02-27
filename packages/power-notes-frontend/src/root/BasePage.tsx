@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import React from "react";
 import { Outlet } from "react-router-dom";
-import { LEFT_MENU_WIDTH } from "../core/constants";
+import { LEFT_MENU_WIDTH_PX } from "../core/constants";
 import { LeftMenuContextProvider } from "../navigation/LeftMenuContextProvider";
 import { LeftMenu } from "../navigation/components/LeftMenu";
 import { TopBar } from "../navigation/components/TopBar";
@@ -30,8 +30,8 @@ const AppBarStyled = styled(AppBar, {
         duration: theme.transitions.duration.leavingScreen,
     }),
     ...(isMinimized && {
-        width: `calc(100% - ${LEFT_MENU_WIDTH}px)`,
-        marginLeft: `${LEFT_MENU_WIDTH}px`,
+        width: `calc(100% - ${LEFT_MENU_WIDTH_PX}px)`,
+        marginLeft: `${LEFT_MENU_WIDTH_PX}px`,
         overflow: "hidden",
         transition: theme.transitions.create(["margin", "width"], {
             easing: theme.transitions.easing.easeOut,
@@ -87,11 +87,11 @@ export function BasePage() {
                         open={isLeftMenuOpen}
                         variant={"persistent"}
                         sx={{
-                            width: `${LEFT_MENU_WIDTH}px`,
+                            width: `${LEFT_MENU_WIDTH_PX}px`,
                             flexShrink: 0,
                             // TODO (whammond): Understand the functionality of this styling on the paper class better for drawer width functionality
                             "& .MuiDrawer-paper": {
-                                width: LEFT_MENU_WIDTH,
+                                width: LEFT_MENU_WIDTH_PX,
                                 boxSizing: "border-box",
                             },
                         }}
@@ -101,7 +101,7 @@ export function BasePage() {
                                 <ChevronRight />
                             </IconButton>
                         </DrawerHeaderStyled>
-                        <LeftMenu content="hello world" />
+                        <LeftMenu />
                     </Drawer>
                 </Box>
                 <Outlet />
