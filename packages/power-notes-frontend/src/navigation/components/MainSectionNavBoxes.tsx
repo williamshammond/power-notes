@@ -1,7 +1,6 @@
 import { Box, useTheme } from "@mui/material";
-import { HomeSectionCard } from "./HomeSectionCard";
 import React from "react";
-import { LEFT_MENU_WIDTH_PX } from "../../core/constants";
+import { HomeSectionCard } from "./HomeSectionCard";
 
 interface MainSectionNavBoxesProps {}
 
@@ -44,8 +43,6 @@ export const MainSectionNavBoxes = React.memo<MainSectionNavBoxesProps>(
                     display: "flex",
                     gap: "50px",
                     justifyContent: "space-evenly",
-                    pl: `${LEFT_MENU_WIDTH_PX}px`,
-                    pr: `${LEFT_MENU_WIDTH_PX}px`,
                     pt: "100px",
                 }}
             >

@@ -1,7 +1,7 @@
 import React from "react";
 import { useIsLeftMenuOpen } from "../../navigation/LeftMenuContext";
-import { CenteredContentWrapper } from "./CenteredContentWrapper";
-import { DynamicWidthContentWrapper } from "./DynamicWidthContentWrapper";
+import { CenteredDynamicWidthContentWrapper } from "./CenteredDynamicWidthContentWrapper";
+import { FullDynamicWidthContentWrapper } from "./FullDynamicWidthContentWrapper";
 
 interface CenteredAndDynamicContentProps {
     readonly centeredContent: React.ReactNode;
@@ -16,10 +16,12 @@ export function CenteredAndDynamicWidthContent({
 
     return (
         <React.Fragment>
-            <CenteredContentWrapper>{centeredContent}</CenteredContentWrapper>
-            <DynamicWidthContentWrapper isMinimized={isLeftMenuOpen}>
+            <CenteredDynamicWidthContentWrapper isMinimized={isLeftMenuOpen}>
+                {centeredContent}
+            </CenteredDynamicWidthContentWrapper>
+            <FullDynamicWidthContentWrapper isMinimized={isLeftMenuOpen}>
                 {dynamicContent}
-            </DynamicWidthContentWrapper>
+            </FullDynamicWidthContentWrapper>
         </React.Fragment>
     );
 }

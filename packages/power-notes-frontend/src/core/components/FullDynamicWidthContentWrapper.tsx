@@ -2,28 +2,28 @@ import { styled } from "@mui/material";
 import { LEFT_MENU_WIDTH_PX } from "../constants";
 import { WithSx } from "../types/WithSx";
 
-interface DynamicWidthContentWrapperProps
+interface FullDynamicWidthContentWrapperProps
     extends React.PropsWithChildren,
         WithSx {
     readonly isMinimized: boolean;
 }
 
-export const DynamicWidthContentWrapper = ({
+export const FullDynamicWidthContentWrapper = ({
     children,
     isMinimized = false,
     sx = [],
-}: DynamicWidthContentWrapperProps) => {
+}: FullDynamicWidthContentWrapperProps) => {
     return (
-        <DynamicWidthContentWrapperInternal
+        <FullDynamicWidthContentWrapperInternal
             sx={[...(Array.isArray(sx) ? sx : [sx])]}
             isMinimized={isMinimized}
         >
             {children}
-        </DynamicWidthContentWrapperInternal>
+        </FullDynamicWidthContentWrapperInternal>
     );
 };
 
-const DynamicWidthContentWrapperInternal = styled("main", {
+const FullDynamicWidthContentWrapperInternal = styled("main", {
     shouldForwardProp: (prop) => prop !== "isMinimized",
 })<{
     isMinimized?: boolean;
