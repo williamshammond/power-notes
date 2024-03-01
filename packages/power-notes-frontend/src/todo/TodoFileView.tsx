@@ -1,5 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
+import { FullDynamicWidthContentWrapper } from "../core/components/FullDynamicWidthContentWrapper";
 
 interface Task {
     readonly completed: boolean;
@@ -16,7 +17,7 @@ interface Todo {
 }
 
 export function TodoFileView() {
-    const [jouralContent, setTodoContent] = React.useState("");
+    const [todoContent, setTodoContent] = React.useState("");
 
     const { todoId } = useParams();
 
@@ -29,5 +30,11 @@ export function TodoFileView() {
             .then((data) => setTodoContent(data.name));
     }, [todoId]);
 
-    return <div>{jouralContent}</div>;
+    return (
+        <React.Fragment>
+            <FullDynamicWidthContentWrapper>
+                {todoContent}
+            </FullDynamicWidthContentWrapper>
+        </React.Fragment>
+    );
 }

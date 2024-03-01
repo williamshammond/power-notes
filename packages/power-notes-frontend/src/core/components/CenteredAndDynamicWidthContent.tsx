@@ -19,7 +19,7 @@ export function CenteredAndDynamicWidthContent({
             <CenteredDynamicWidthContentWrapper isMinimized={isLeftMenuOpen}>
                 {centeredContent}
             </CenteredDynamicWidthContentWrapper>
-            <FullDynamicWidthContentWrapper isMinimized={isLeftMenuOpen}>
+            <FullDynamicWidthContentWrapper>
                 {dynamicContent}
             </FullDynamicWidthContentWrapper>
         </React.Fragment>

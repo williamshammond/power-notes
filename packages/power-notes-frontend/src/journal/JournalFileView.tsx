@@ -1,5 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
+import { FullDynamicWidthContentWrapper } from "../core/components/FullDynamicWidthContentWrapper";
 
 interface Journal {
     readonly name: string;
@@ -10,7 +11,7 @@ interface Journal {
 }
 
 export function JournalFileView() {
-    const [jouralContent, setJournalContent] = React.useState("");
+    const [journalContent, setJournalContent] = React.useState("");
 
     const { journalId } = useParams();
 
@@ -23,5 +24,15 @@ export function JournalFileView() {
             .then((data) => setJournalContent(data.name));
     }, [journalId]);
 
-    return <div>{jouralContent}</div>;
+    if (journalContent == null) {
+        return <div>Loading...</div>;
+    }
+
+    return (
+        <React.Fragment>
+            <FullDynamicWidthContentWrapper>
+                {journalContent}
+            </FullDynamicWidthContentWrapper>
+        </React.Fragment>
+    );
 }

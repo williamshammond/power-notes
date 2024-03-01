@@ -1,18 +1,18 @@
 import { styled } from "@mui/material";
 import { LEFT_MENU_WIDTH_PX } from "../constants";
 import { WithSx } from "../types/WithSx";
+import { useIsLeftMenuOpen } from "../../navigation/LeftMenuContext";
 
 interface FullDynamicWidthContentWrapperProps
     extends React.PropsWithChildren,
-        WithSx {
-    readonly isMinimized: boolean;
-}
+        WithSx {}
 
 export const FullDynamicWidthContentWrapper = ({
     children,
-    isMinimized = false,
     sx = [],
 }: FullDynamicWidthContentWrapperProps) => {
+    const isMinimized = useIsLeftMenuOpen();
+
     return (
         <FullDynamicWidthContentWrapperInternal
             sx={[...(Array.isArray(sx) ? sx : [sx])]}
