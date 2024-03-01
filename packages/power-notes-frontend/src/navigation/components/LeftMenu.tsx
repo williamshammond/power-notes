@@ -7,17 +7,17 @@ import {
     MenuItem,
 } from "@mui/material";
 import React from "react";
-import { Link } from "react-router-dom";
+import { LeftMenuItem } from "./LeftMenuItem";
 
-interface Document {
+export interface Document {
     readonly id: string;
     readonly name: string;
 }
-interface Note extends Document {}
-interface Todo extends Document {}
-interface Journal extends Document {}
+export interface Note extends Document {}
+export interface Todo extends Document {}
+export interface Journal extends Document {}
 
-interface Folder {
+export interface Folder {
     readonly id: string;
     readonly name: string;
     readonly subfolders: ReadonlyArray<Folder>;
@@ -86,46 +86,13 @@ function displayFolder(folder: Folder, layer: number): JSX.Element {
                     displayFolder(subfolder, layer + 1)
                 )}
                 {folder.notes.map((note) => (
-                    <MenuItem
-                        component={Link}
-                        key={note.id}
-                        style={{
-                            color: "inherit",
-                            textDecoration: "inherit",
-                        }}
-                        sx={{ pl: `30px` }}
-                        to={`/note/${note.id}`}
-                    >
-                        {note.name}
-                    </MenuItem>
+                    <LeftMenuItem document={note} key={note.id} />
                 ))}
                 {folder.todos.map((todo) => (
-                    <MenuItem
-                        component={Link}
-                        key={todo.id}
-                        style={{
-                            color: "inherit",
-                            textDecoration: "inherit",
-                        }}
-                        sx={{ pl: `30px` }}
-                        to={`/todo/${todo.id}`}
-                    >
-                        {todo.name}
-                    </MenuItem>
+                    <LeftMenuItem document={todo} key={todo.id} />
                 ))}
                 {folder.journals.map((journal) => (
-                    <MenuItem
-                        key={journal.id}
-                        component={Link}
-                        style={{
-                            color: "inherit",
-                            textDecoration: "inherit",
-                        }}
-                        sx={{ pl: `30px` }}
-                        to={`/journal/${journal.id}`}
-                    >
-                        {journal.name}
-                    </MenuItem>
+                    <LeftMenuItem document={journal} key={journal.id} />
                 ))}
             </AccordionDetails>
         </Accordion>
