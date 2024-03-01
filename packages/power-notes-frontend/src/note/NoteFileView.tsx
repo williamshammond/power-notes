@@ -1,5 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
+import { FullDynamicWidthContentWrapper } from "../core/components/FullDynamicWidthContentWrapper";
+import { useIsLeftMenuOpen } from "../navigation/LeftMenuContext";
 
 interface Section {
     readonly title: string;
@@ -16,6 +18,8 @@ export function NoteFileView() {
 
     const { noteId } = useParams();
 
+    const isLeftMenuOpen = useIsLeftMenuOpen();
+
     React.useEffect(() => {
         fetch(`http://localhost:3000/note/${noteId}`)
             .then((res) => {
@@ -25,5 +29,15 @@ export function NoteFileView() {
             .then((data) => setNoteContent(data.name));
     }, [noteId]);
 
-    return <div>{noteContent}</div>;
+    if (noteContent == null) {
+        return <div>Loading...</div>;
+    }
+
+    return (
+        <React.Fragment>
+            <FullDynamicWidthContentWrapper isMinimized={isLeftMenuOpen}>
+                {noteContent}
+            </FullDynamicWidthContentWrapper>
+        </React.Fragment>
+    );
 }

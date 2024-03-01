@@ -63,8 +63,11 @@ function displayFolder(folder: Folder, layer: number): JSX.Element {
             <AccordionSummary
                 sx={{
                     flexDirection: "row-reverse",
-                    "& .MuiAccordionSummary-expandIconWrapper.Mui-expanded": {
+                    "& .MuiAccordionSummary-expandIconWrapper": {
                         transform: "rotate(-90deg)",
+                    },
+                    "& .MuiAccordionSummary-expandIconWrapper.Mui-expanded": {
+                        transform: "rotate(0deg)",
                     },
                 }}
                 expandIcon={<ExpandMore />}
@@ -127,17 +130,4 @@ function displayFolder(folder: Folder, layer: number): JSX.Element {
             </AccordionDetails>
         </Accordion>
     );
-}
-function calculateBackground(layer: number): string {
-    const baseHue = 0;
-    const baseSaturation = 0;
-    const baseLightness = 0;
-
-    const lightnessIncrement = 2;
-    const adjustedLightness = baseLightness + layer * lightnessIncrement;
-
-    const finalLightness = Math.min(adjustedLightness, 100);
-    const finalColor = `hsl(${baseHue}, ${baseSaturation}%, ${finalLightness}%)`;
-
-    return finalColor;
 }
