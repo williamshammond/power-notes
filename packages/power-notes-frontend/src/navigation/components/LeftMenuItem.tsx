@@ -1,15 +1,16 @@
-import { ListItem, MenuItem } from "@mui/material";
+import { Icon, ListItem, MenuItem } from "@mui/material";
 import React from "react";
 import { Link } from "react-router-dom";
 import { Document } from "./LeftMenu";
-import { Inbox } from "@mui/icons-material";
 
 interface Props {
     document: Document;
+    icon?: React.ReactElement<typeof Icon>;
 }
 
 export const LeftMenuItem = React.memo<Props>(function LeftMenuItemFn({
     document,
+    icon,
 }: Props) {
     return (
         <MenuItem
@@ -21,8 +22,8 @@ export const LeftMenuItem = React.memo<Props>(function LeftMenuItemFn({
             sx={{ pl: `30px` }}
             to={`/journal/${document.id}`}
         >
-            <ListItem>
-                <Inbox />
+            <ListItem sx={{ display: "flex", gap: "5px" }}>
+                {icon}
                 {document.name}
             </ListItem>
         </MenuItem>
