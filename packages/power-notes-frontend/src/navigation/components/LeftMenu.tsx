@@ -9,6 +9,7 @@ import {
     AccordionDetails,
     AccordionSummary,
     Box,
+    Divider,
     MenuItem,
 } from "@mui/material";
 import React from "react";
@@ -74,43 +75,58 @@ function displayFolder(folder: Folder, layer: number): JSX.Element {
                     "& .MuiAccordionSummary-expandIconWrapper.Mui-expanded": {
                         transform: "rotate(0deg)",
                     },
+                    paddingLeft: "0px",
                 }}
                 expandIcon={<ExpandMore />}
                 id="panel3-header"
             >
                 {folder.name}
             </AccordionSummary>
-            <AccordionDetails sx={{ padding: `0 0 0 15px` }}>
-                {folder.subfolders.length === 0 &&
-                    folder.notes.length === 0 &&
-                    folder.todos.length === 0 &&
-                    folder.journals.length === 0 && (
-                        <MenuItem>No content</MenuItem>
-                    )}
-                {folder.notes.map((note) => (
-                    <LeftMenuItem
-                        document={note}
-                        icon={<EditNote />}
-                        key={note.id}
-                    />
-                ))}
-                {folder.todos.map((todo) => (
-                    <LeftMenuItem
-                        document={todo}
-                        icon={<Checklist />}
-                        key={todo.id}
-                    />
-                ))}
-                {folder.journals.map((journal) => (
-                    <LeftMenuItem
-                        document={journal}
-                        icon={<AutoStoriesOutlined />}
-                        key={journal.id}
-                    />
-                ))}
-                {folder.subfolders.map((subfolder) =>
-                    displayFolder(subfolder, layer + 1)
-                )}
+
+            <AccordionDetails sx={{ padding: `0 0 0 13px` }}>
+                <Box
+                    sx={{
+                        padding: "0",
+                        display: "flex",
+                        flexDirection: "row",
+                        gap: "7px",
+                        "& :before": { backgroundColor: "inherit" },
+                    }}
+                >
+                    <Divider orientation="vertical" flexItem />
+                    {folder.subfolders.length === 0 &&
+                        folder.notes.length === 0 &&
+                        folder.todos.length === 0 &&
+                        folder.journals.length === 0 && (
+                            <MenuItem>No content</MenuItem>
+                        )}
+                    <Box>
+                        {folder.notes.map((note) => (
+                            <LeftMenuItem
+                                document={note}
+                                icon={<EditNote />}
+                                key={note.id}
+                            />
+                        ))}
+                        {folder.todos.map((todo) => (
+                            <LeftMenuItem
+                                document={todo}
+                                icon={<Checklist />}
+                                key={todo.id}
+                            />
+                        ))}
+                        {folder.journals.map((journal) => (
+                            <LeftMenuItem
+                                document={journal}
+                                icon={<AutoStoriesOutlined />}
+                                key={journal.id}
+                            />
+                        ))}
+                        {folder.subfolders.map((subfolder) =>
+                            displayFolder(subfolder, layer + 1)
+                        )}
+                    </Box>
+                </Box>
             </AccordionDetails>
         </Accordion>
     );

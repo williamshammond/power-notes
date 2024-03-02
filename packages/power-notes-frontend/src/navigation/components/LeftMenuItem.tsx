@@ -19,10 +19,10 @@ export const LeftMenuItem = React.memo<Props>(function LeftMenuItemFn({
                 color: "inherit",
                 textDecoration: "inherit",
             }}
-            sx={{ pl: `30px` }}
+            sx={{ pl: `00px` }}
             to={`/journal/${document.id}`}
         >
-            <ListItem sx={{ display: "flex", gap: "5px" }}>
+            <ListItem sx={{ display: "flex", gap: "5px", pl: "5px" }}>
                 {icon}
                 {document.name}
             </ListItem>
