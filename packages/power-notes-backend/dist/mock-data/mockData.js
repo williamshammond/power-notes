@@ -18,26 +18,36 @@ exports.MOCK_FULL_FOLDER_DATA = {
                         {
                             id: "17b423f7-a6de-454a-81b7-4ab165fc8128",
                             name: "Typescript Notes",
+                            type: "NOTE",
+                            urlBase: "note",
                         },
                         {
                             id: "ba0aed9a-06d8-4f2b-b7a4-a41805d27301",
                             name: "Project Ideas",
+                            type: "NOTE",
+                            urlBase: "note",
                         },
                         {
                             id: "534c46fe-bac8-4acc-9dfb-bae6a55d155f",
                             name: "PostgreSQL Notes",
+                            type: "NOTE",
+                            urlBase: "note",
                         },
                     ],
                     todos: [
                         {
                             id: "37bac3ce-aab8-40de-86b9-9b727bc14a6f",
                             name: "Power Notes Project Plan",
+                            type: "TODO",
+                            urlBase: "todo",
                         },
                     ],
                     journals: [
                         {
                             id: "f56695ed-1b2c-496e-99e1-e98ec422ef96",
                             name: "Power Notes Project Plan",
+                            type: "JOURNAL",
+                            urlBase: "journal",
                         },
                     ],
                 },
@@ -131,14 +141,20 @@ exports.MOCK_FULL_FOLDER_DATA = {
                 {
                     id: "17b423f7-a6de-454a-81b7-4ab165fc8128",
                     name: "Typescript Notes",
+                    type: "NOTE",
+                    urlBase: "note",
                 },
                 {
                     id: "ba0aed9a-06d8-4f2b-b7a4-a41805d27301",
                     name: "Project Ideas",
+                    type: "NOTE",
+                    urlBase: "note",
                 },
                 {
                     id: "534c46fe-bac8-4acc-9dfb-bae6a55d155f",
                     name: "PostgreSQL Notes",
+                    type: "NOTE",
+                    urlBase: "note",
                 },
             ],
             todos: [],

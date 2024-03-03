@@ -42,9 +42,7 @@ app.get("/note/:noteId", (req: Request, res: Response) => {
     ) {
         res.json(MOCK_NOTES_DATA[req.params.noteId]);
     } else {
-        res.json({
-            message: "Note not found",
-        });
+        return res.json({ Message: "Note not found" });
     }
 });
 

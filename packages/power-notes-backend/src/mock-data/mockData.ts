@@ -16,26 +16,36 @@ export const MOCK_FULL_FOLDER_DATA = {
                         {
                             id: "17b423f7-a6de-454a-81b7-4ab165fc8128",
                             name: "Typescript Notes",
+                            type: "NOTE",
+                            urlBase: "note",
                         },
                         {
                             id: "ba0aed9a-06d8-4f2b-b7a4-a41805d27301",
                             name: "Project Ideas",
+                            type: "NOTE",
+                            urlBase: "note",
                         },
                         {
                             id: "534c46fe-bac8-4acc-9dfb-bae6a55d155f",
                             name: "PostgreSQL Notes",
+                            type: "NOTE",
+                            urlBase: "note",
                         },
                     ],
                     todos: [
                         {
                             id: "37bac3ce-aab8-40de-86b9-9b727bc14a6f",
                             name: "Power Notes Project Plan",
+                            type: "TODO",
+                            urlBase: "todo",
                         },
                     ],
                     journals: [
                         {
                             id: "f56695ed-1b2c-496e-99e1-e98ec422ef96",
                             name: "Power Notes Project Plan",
+                            type: "JOURNAL",
+                            urlBase: "journal",
                         },
                     ],
                 },
@@ -129,14 +139,20 @@ export const MOCK_FULL_FOLDER_DATA = {
                 {
                     id: "17b423f7-a6de-454a-81b7-4ab165fc8128",
                     name: "Typescript Notes",
+                    type: "NOTE",
+                    urlBase: "note",
                 },
                 {
                     id: "ba0aed9a-06d8-4f2b-b7a4-a41805d27301",
                     name: "Project Ideas",
+                    type: "NOTE",
+                    urlBase: "note",
                 },
                 {
                     id: "534c46fe-bac8-4acc-9dfb-bae6a55d155f",
                     name: "PostgreSQL Notes",
+                    type: "NOTE",
+                    urlBase: "note",
                 },
             ],
             todos: [],
@@ -217,16 +233,6 @@ export const MOCK_FOLDERS_DATA: { [id: string]: Folder } = {
     },
 };
 
-interface Section {
-    readonly title: string;
-    readonly content: string;
-}
-
-interface Note {
-    readonly name: string;
-    readonly sections: ReadonlyArray<Section>;
-}
-
 export const MOCK_NOTES_DATA: { [id: string]: Note } = {
     "ba0aed9a-06d8-4f2b-b7a4-a41805d27301": {
         name: "Note 1",
@@ -260,6 +266,42 @@ export const MOCK_NOTES_DATA: { [id: string]: Note } = {
         ],
     },
 };
+
+export interface NoteInformation {
+    readonly id: string;
+    readonly name: string;
+    readonly type: "NOTE";
+    readonly urlBase: "note";
+}
+
+export interface TodoInformation {
+    readonly id: string;
+    readonly name: string;
+    readonly type: "TODO";
+    readonly urlBase: "note";
+}
+
+export interface JournalInformation {
+    readonly id: string;
+    readonly name: string;
+    readonly type: "JOURNAL";
+    readonly urlBase: "note";
+}
+
+export type DocumentInformation =
+    | NoteInformation
+    | TodoInformation
+    | JournalInformation;
+
+interface Section {
+    readonly title: string;
+    readonly content: string;
+}
+
+interface Note {
+    readonly name: string;
+    sections: ReadonlyArray<Section>;
+}
 
 interface Task {
     readonly completed: boolean;

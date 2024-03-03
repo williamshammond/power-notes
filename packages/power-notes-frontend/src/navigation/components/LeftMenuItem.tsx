@@ -1,15 +1,15 @@
 import { Icon, ListItem, MenuItem } from "@mui/material";
 import React from "react";
 import { Link } from "react-router-dom";
-import { Document } from "./LeftMenu";
+import { DocumentInformation } from "../types/documentTypes";
 
 interface Props {
-    document: Document;
-    icon?: React.ReactElement<typeof Icon>;
+    readonly documentInformation: DocumentInformation;
+    readonly icon?: React.ReactElement<typeof Icon>;
 }
 
 export const LeftMenuItem = React.memo<Props>(function LeftMenuItemFn({
-    document,
+    documentInformation,
     icon,
 }: Props) {
     return (
@@ -20,11 +20,11 @@ export const LeftMenuItem = React.memo<Props>(function LeftMenuItemFn({
                 textDecoration: "inherit",
             }}
             sx={{ pl: `00px` }}
-            to={`/journal/${document.id}`}
+            to={`/${documentInformation.urlBase}/${documentInformation.id}`}
         >
             <ListItem sx={{ display: "flex", gap: "5px", pl: "5px" }}>
                 {icon}
-                {document.name}
+                {documentInformation.name}
             </ListItem>
         </MenuItem>
     );

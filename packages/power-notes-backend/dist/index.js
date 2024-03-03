@@ -32,9 +32,7 @@ app.get("/note/:noteId", (req, res) => {
         res.json(mockData_1.MOCK_NOTES_DATA[req.params.noteId]);
     }
     else {
-        res.json({
-            message: "Note not found",
-        });
+        return res.json({ Message: "Note not found" });
     }
 });
 app.get("/todo/:todoId", (req, res) => {

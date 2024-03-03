@@ -1,39 +1,44 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { FullDynamicWidthContentWrapper } from "../core/components/FullDynamicWidthContentWrapper";
+import { NoteFileViewContent } from "./NoteFileViewContent";
 
-interface Section {
+export interface Section {
     readonly title: string;
     readonly content: string;
 }
 
-interface Note {
+export interface Note {
     readonly name: string;
     readonly sections: ReadonlyArray<Section>;
 }
 
 export function NoteFileView() {
-    const [noteContent, setNoteContent] = React.useState("");
+    const [note, setNote] = React.useState<Note | undefined>(undefined);
 
     const { noteId } = useParams();
 
     React.useEffect(() => {
-        fetch(`http://localhost:3000/note/${noteId}`)
-            .then((res) => {
-                console.log(res);
-                return res.json() as Promise<Note>;
-            })
-            .then((data) => setNoteContent(data.name));
+        try {
+            fetch(`http://localhost:3000/note/${noteId}`)
+                .then((res) => {
+                    console.log(res);
+                    return res.json() as Promise<Note>;
+                })
+                .then((data) => setNote(data));
+        } catch (e) {
+            console.log(e);
+        }
     }, [noteId]);
 
-    if (noteContent == null) {
+    if (note == null) {
         return <div>Loading...</div>;
     }
 
     return (
         <React.Fragment>
             <FullDynamicWidthContentWrapper>
-                {noteContent}
+                {<NoteFileViewContent note={note} />}
             </FullDynamicWidthContentWrapper>
         </React.Fragment>
     );

@@ -14,27 +14,7 @@ import {
 } from "@mui/material";
 import React from "react";
 import { LeftMenuItem } from "./LeftMenuItem";
-
-export interface Document {
-    readonly id: string;
-    readonly name: string;
-}
-export interface Note extends Document {}
-export interface Todo extends Document {}
-export interface Journal extends Document {}
-
-export interface Folder {
-    readonly id: string;
-    readonly name: string;
-    readonly subfolders: ReadonlyArray<Folder>;
-    readonly notes: ReadonlyArray<Note>;
-    readonly todos: ReadonlyArray<Todo>;
-    readonly journals: ReadonlyArray<Journal>;
-}
-
-interface FolderData {
-    readonly folders: ReadonlyArray<Folder>;
-}
+import { FolderData, Folder } from "../types/documentTypes";
 
 export const LeftMenu = function LeftMenu() {
     const [folders, setFolders] = React.useState<FolderData>({ folders: [] });
@@ -103,21 +83,21 @@ function displayFolder(folder: Folder, layer: number): JSX.Element {
                     <Box>
                         {folder.notes.map((note) => (
                             <LeftMenuItem
-                                document={note}
+                                documentInformation={note}
                                 icon={<EditNote />}
                                 key={note.id}
                             />
                         ))}
                         {folder.todos.map((todo) => (
                             <LeftMenuItem
-                                document={todo}
+                                documentInformation={todo}
                                 icon={<Checklist />}
                                 key={todo.id}
                             />
                         ))}
                         {folder.journals.map((journal) => (
                             <LeftMenuItem
-                                document={journal}
+                                documentInformation={journal}
                                 icon={<AutoStoriesOutlined />}
                                 key={journal.id}
                             />
