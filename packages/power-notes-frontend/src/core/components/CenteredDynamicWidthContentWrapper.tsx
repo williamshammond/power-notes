@@ -1,18 +1,17 @@
 import { Box, useTheme } from "@mui/material";
 import { WithSx } from "../types/WithSx";
 import { LEFT_MENU_WIDTH_PX } from "../constants";
+import { useIsLeftMenuOpen } from "../../navigation/LeftMenuContext";
 
 interface CenteredDynamicWidthContentWrapperProps
     extends React.PropsWithChildren,
-        WithSx {
-    readonly isMinimized: boolean;
-}
+        WithSx {}
 
 export const CenteredDynamicWidthContentWrapper = ({
     children,
-    isMinimized,
     sx = [],
 }: CenteredDynamicWidthContentWrapperProps) => {
+    const isMinimized = useIsLeftMenuOpen();
     const theme = useTheme();
 
     return (

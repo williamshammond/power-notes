@@ -1,5 +1,4 @@
 import React from "react";
-import { useIsLeftMenuOpen } from "../../navigation/LeftMenuContext";
 import { CenteredDynamicWidthContentWrapper } from "./CenteredDynamicWidthContentWrapper";
 import { FullDynamicWidthContentWrapper } from "./FullDynamicWidthContentWrapper";
 
@@ -12,11 +11,9 @@ export function CenteredAndDynamicWidthContent({
     centeredContent,
     dynamicContent,
 }: CenteredAndDynamicContentProps) {
-    const isLeftMenuOpen = useIsLeftMenuOpen();
-
     return (
         <React.Fragment>
-            <CenteredDynamicWidthContentWrapper isMinimized={isLeftMenuOpen}>
+            <CenteredDynamicWidthContentWrapper>
                 {centeredContent}
             </CenteredDynamicWidthContentWrapper>
             <FullDynamicWidthContentWrapper>

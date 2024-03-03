@@ -2,6 +2,8 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { FullDynamicWidthContentWrapper } from "../core/components/FullDynamicWidthContentWrapper";
 import { NoteFileViewContent } from "./NoteFileViewContent";
+import { CenteredDynamicWidthContentWrapper } from "../core/components/CenteredDynamicWidthContentWrapper";
+import { NoteTitle } from "./NoteTitle";
 
 export interface Section {
     readonly title: string;
@@ -31,12 +33,15 @@ export function NoteFileView() {
         }
     }, [noteId]);
 
-    if (note == null) {
+    if (note == null || note.name == null) {
         return <div>Loading...</div>;
     }
 
     return (
         <React.Fragment>
+            <CenteredDynamicWidthContentWrapper>
+                <NoteTitle title={note.name} />
+            </CenteredDynamicWidthContentWrapper>
             <FullDynamicWidthContentWrapper>
                 {<NoteFileViewContent note={note} />}
             </FullDynamicWidthContentWrapper>

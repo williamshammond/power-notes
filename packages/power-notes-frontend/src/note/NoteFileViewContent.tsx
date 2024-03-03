@@ -1,6 +1,8 @@
+import { Box } from "@mui/material";
 import React from "react";
 import { Note } from "./NoteFileView";
-import { NoteTitle } from "./NoteTitle";
+import { NoteSideMenu } from "./NoteSideMenu";
+import { NoteCanvas } from "./NoteCanvas";
 
 interface Props {
     readonly note: Note;
@@ -9,9 +11,10 @@ interface Props {
 export const NoteFileViewContent = React.memo<Props>(
     function NoteFileViewContentfn({ note }: Props) {
         return (
-            <React.Fragment>
-                <NoteTitle title={note.name} />
-            </React.Fragment>
+            <Box sx={{ display: "flex" }}>
+                <NoteSideMenu></NoteSideMenu>
+                <NoteCanvas note={note}></NoteCanvas>
+            </Box>
         );
     }
 );
