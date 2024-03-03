@@ -112,6 +112,9 @@ importers:
 
   packages/power-notes-frontend:
     dependencies:
+      '@power-notes/power-notes-shared':
+        specifier: workspace:*
+        version: link:../power-notes-shared
       react:
         specifier: ^18.2.0
         version: 18.2.0

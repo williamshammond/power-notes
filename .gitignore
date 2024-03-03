@@ -90,3 +90,7 @@ yarn-error.log*
 # project-specific ignore files
 /dist
 /storybook-static
+
+# JS/TS Ignore files
+*.js
+*.d.ts
