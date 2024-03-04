@@ -81,6 +81,9 @@ importers:
 
   packages/power-notes-backend:
     dependencies:
+      '@power-notes/power-notes-shared':
+        specifier: workspace:*
+        version: link:../power-notes-shared
       '@types/cors':
         specifier: ^2.8.17
         version: 2.8.17

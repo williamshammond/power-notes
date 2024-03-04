@@ -1,3 +1,10 @@
+import {
+    FolderContent,
+    JournalContent,
+    NoteContent,
+    TodoContent,
+} from "@power-notes/power-notes-shared";
+
 export const MOCK_USER_DATA = {
     folders: ["QfsoXeQwUlfK", "wEg6Bmc1Q3Xk", "mqLxjuT0X2Pg"],
 };
@@ -178,17 +185,7 @@ export const MOCK_FULL_FOLDER_DATA = {
     page: 1,
 };
 
-type FolderId = string;
-
-interface Folder {
-    name: string;
-    subfolders: FolderId[];
-    noteIds: string[];
-    todoIds: string[];
-    journalIds: string[];
-}
-
-export const MOCK_FOLDERS_DATA: { [id: string]: Folder } = {
+export const MOCK_FOLDERS_DATA: { [id: string]: FolderContent } = {
     QfsoXeQwUlfK: {
         name: "Personal",
         subfolders: ["imnA4Mgvq4Wt", "DpGNi1fWsHyx"],
@@ -233,7 +230,7 @@ export const MOCK_FOLDERS_DATA: { [id: string]: Folder } = {
     },
 };
 
-export const MOCK_NOTES_DATA: { [id: string]: Note } = {
+export const MOCK_NOTES_DATA: { [id: string]: NoteContent } = {
     "ba0aed9a-06d8-4f2b-b7a4-a41805d27301": {
         name: "Note 1",
         sections: [
@@ -267,57 +264,7 @@ export const MOCK_NOTES_DATA: { [id: string]: Note } = {
     },
 };
 
-export interface NoteInformation {
-    readonly id: string;
-    readonly name: string;
-    readonly type: "NOTE";
-    readonly urlBase: "note";
-}
-
-export interface TodoInformation {
-    readonly id: string;
-    readonly name: string;
-    readonly type: "TODO";
-    readonly urlBase: "note";
-}
-
-export interface JournalInformation {
-    readonly id: string;
-    readonly name: string;
-    readonly type: "JOURNAL";
-    readonly urlBase: "note";
-}
-
-export type DocumentInformation =
-    | NoteInformation
-    | TodoInformation
-    | JournalInformation;
-
-interface Section {
-    readonly title: string;
-    readonly content: string;
-}
-
-interface Note {
-    readonly name: string;
-    sections: ReadonlyArray<Section>;
-}
-
-interface Task {
-    readonly completed: boolean;
-    readonly content?: string;
-    readonly name: string;
-    readonly subtasks?: ReadonlyArray<Task>;
-}
-
-interface Todo {
-    readonly completed: boolean;
-    readonly content?: string;
-    readonly name: string;
-    readonly tasks: ReadonlyArray<Task>;
-}
-
-export const MOCK_TODOS_DATA: { [id: string]: Todo } = {
+export const MOCK_TODOS_DATA: { [id: string]: TodoContent } = {
     oCoI28TsuAZw: {
         name: "Todo List 1",
         tasks: [
@@ -332,15 +279,7 @@ export const MOCK_TODOS_DATA: { [id: string]: Todo } = {
     },
 };
 
-interface Journal {
-    readonly name: string;
-    readonly content: {
-        readonly text: string;
-        readonly media: string;
-    };
-}
-
-export const MOCK_JOURNALS_DATA: { [id: string]: Journal } = {
+export const MOCK_JOURNALS_DATA: { [id: string]: JournalContent } = {
     yK9gKwpbMgPL: {
         name: "Journal 1",
         content: {

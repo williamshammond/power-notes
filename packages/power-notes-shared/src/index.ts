@@ -1,6 +1,14 @@
 export type {
+    JournalContent,
+    NoteContent,
+    SectionContent,
+    TaskContent,
+    TodoContent,
+} from "./types/documentContentTypes";
+export type {
     DocumentInformation,
+    JournalInformation,
     NoteInformation,
     TodoInformation,
-    JournalInformation,
-} from "./types/documentTypes";
+} from "./types/documentInformationTypes";
+export type { FolderContent } from "./types/FolderContent";
