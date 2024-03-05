@@ -11,8 +11,8 @@ interface Props {
 export const NoteFileViewContent = React.memo<Props>(
     function NoteFileViewContentfn({ note }: Props) {
         return (
-            <Box sx={{ display: "flex" }}>
-                <NoteSideMenu></NoteSideMenu>
+            <Box>
+                <NoteSideMenu />
                 <NoteCanvas note={note}></NoteCanvas>
             </Box>
         );
