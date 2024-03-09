@@ -3,6 +3,7 @@ import React from "react";
 import { Note } from "./NoteFileView";
 import { NoteSideMenu } from "./NoteSideMenu";
 import { NoteCanvas } from "./NoteCanvas";
+import { DndContext } from "@dnd-kit/core";
 
 interface Props {
     readonly note: Note;
@@ -11,9 +12,11 @@ interface Props {
 export const NoteFileViewContent = React.memo<Props>(
     function NoteFileViewContentfn({ note }: Props) {
         return (
-            <Box>
-                <NoteSideMenu />
-                <NoteCanvas note={note}></NoteCanvas>
+            <Box sx={{ display: "flex", flexDirection: "row" }}>
+                <DndContext>
+                    <NoteSideMenu />
+                    <NoteCanvas note={note}></NoteCanvas>
+                </DndContext>
             </Box>
         );
     }

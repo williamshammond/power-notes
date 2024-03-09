@@ -35,12 +35,11 @@ const FullDynamicWidthContentWrapperInternal = styled("main", {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,
     }),
-    marginLeft: `-${LEFT_MENU_WIDTH_PX}px`,
     ...(isMinimized && {
         transition: theme.transitions.create("margin", {
             easing: theme.transitions.easing.easeOut,
             duration: theme.transitions.duration.enteringScreen,
         }),
-        marginLeft: 0,
+        marginLeft: `${LEFT_MENU_WIDTH_PX}px`,
     }),
 }));

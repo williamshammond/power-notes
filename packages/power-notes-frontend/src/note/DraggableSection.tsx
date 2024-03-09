@@ -10,12 +10,19 @@ export const DraggableSection = React.memo(function DraggableSectionFn({
     id,
     children,
 }: Props) {
-    const { attributes, listeners, setNodeRef } = useDraggable({
+    const { attributes, listeners, setNodeRef, transform } = useDraggable({
         id,
     });
 
+    const style = transform
+        ? {
+              transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`,
+          }
+        : undefined;
+
     return (
         <Paper
+            style={style}
             ref={setNodeRef}
             {...listeners}
             {...attributes}
