@@ -4,16 +4,7 @@ import { FullDynamicWidthContentWrapper } from "../core/components/FullDynamicWi
 import { NoteFileViewContent } from "./NoteFileViewContent";
 import { CenteredDynamicWidthContentWrapper } from "../core/components/CenteredDynamicWidthContentWrapper";
 import { NoteTitle } from "./NoteTitle";
-
-export interface Section {
-    readonly title: string;
-    readonly content: string;
-}
-
-export interface Note {
-    readonly name: string;
-    readonly sections: ReadonlyArray<Section>;
-}
+import { Note } from "./types/Note";
 
 export function NoteFileView() {
     const [note, setNote] = React.useState<Note | undefined>(undefined);

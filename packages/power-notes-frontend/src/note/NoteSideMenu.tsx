@@ -1,6 +1,7 @@
 import Box from "@mui/material/Box";
 import React from "react";
 import { DraggableSection } from "./DraggableSection";
+import { SectionType } from "./types/Section";
 
 // Draggable Section Component
 
@@ -15,13 +16,13 @@ export const NoteSideMenu = React.memo(function NoteSideMenuFn() {
                     width: "200px",
                 }}
             >
-                <DraggableSection id="text">
+                <DraggableSection id={SectionType.TEXT}>
                     <Box sx={{ p: 2 }}>Text</Box>
                 </DraggableSection>
-                <DraggableSection id="todo">
+                <DraggableSection id={SectionType.TODO}>
                     <Box sx={{ p: 2 }}>Todo</Box>
                 </DraggableSection>
-                <DraggableSection id="media">
+                <DraggableSection id={SectionType.MEDIA}>
                     <Box sx={{ p: 2 }}>Media</Box>
                 </DraggableSection>
             </Box>
