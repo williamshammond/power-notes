@@ -1,8 +1,10 @@
 type FolderId = string;
 
-export interface FolderContent {
+export interface FolderDb {
+    id: string;
+    userId: string;
     name: string;
-    subfolders: FolderId[];
+    subfolderIds: FolderId[];
     noteIds: string[];
     todoIds: string[];
     journalIds: string[];

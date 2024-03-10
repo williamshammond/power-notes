@@ -1,9 +1,55 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.MOCK_JOURNALS_DATA = exports.MOCK_TODOS_DATA = exports.MOCK_NOTES_DATA = exports.MOCK_FOLDERS_DATA = exports.MOCK_FULL_FOLDER_DATA = exports.MOCK_USER_DATA = void 0;
-exports.MOCK_USER_DATA = {
-    folders: ["QfsoXeQwUlfK", "wEg6Bmc1Q3Xk", "mqLxjuT0X2Pg"],
-};
+exports.MOCK_JOURNALS_DATA = exports.MOCK_TODOS_DATA = exports.MOCK_FULL_FOLDER_DATA = exports.MOCK_NOTES_DATA = exports.MOCK_FOLDER_DATA = void 0;
+exports.MOCK_FOLDER_DATA = [
+    {
+        id: "f9f9af81-21ce-43de-9e20-6c55e7393eaa",
+        userId: "730ea38e-993f-45f7-847a-3c3db81dedf0",
+        name: "Personal",
+        subfolderIds: [],
+        noteIds: [
+            "ba0aed9a-06d8-4f2b-b7a4-a41805d27301",
+            "3f281600-ab80-4401-97b2-fb6bd8a9e830",
+        ],
+        todoIds: [],
+        journalIds: [],
+    },
+    {
+        id: "4e8dfeaa-5632-4cc3-9a84-8216f0cea8a2",
+        userId: "730ea38e-993f-45f7-847a-3c3db81dedf0",
+        name: "Business",
+        subfolderIds: [],
+        noteIds: [],
+        todoIds: [],
+        journalIds: [],
+    },
+    {
+        id: "26b2084a-f1ba-483f-bf33-2efd88e842d9",
+        userId: "730ea38e-993f-45f7-847a-3c3db81dedf0",
+        name: "Coding",
+        subfolderIds: [],
+        noteIds: [],
+        todoIds: [],
+        journalIds: [],
+    },
+];
+exports.MOCK_NOTES_DATA = [
+    {
+        id: "ba0aed9a-06d8-4f2b-b7a4-a41805d27301",
+        name: "Note 1",
+        content: "This is the content of note 1",
+    },
+    {
+        id: "3f281600-ab80-4401-97b2-fb6bd8a9e830",
+        name: "Note 2",
+        content: "This is the content of note 2",
+    },
+    {
+        id: "5bd05fe6-43f9-405b-b6dc-1ca5848bf3a1",
+        name: "Note 3",
+        content: "This is the content of note 3",
+    },
+];
 exports.MOCK_FULL_FOLDER_DATA = {
     folders: [
         {
@@ -178,83 +224,6 @@ exports.MOCK_FULL_FOLDER_DATA = {
         },
     ],
     page: 1,
-};
-exports.MOCK_FOLDERS_DATA = {
-    QfsoXeQwUlfK: {
-        name: "Personal",
-        subfolders: ["imnA4Mgvq4Wt", "DpGNi1fWsHyx"],
-        noteIds: ["Lq6WNY1cmDNz"],
-        todoIds: [],
-        journalIds: [],
-    },
-    wEg6Bmc1Q3Xk: {
-        name: "Business",
-        subfolders: [],
-        noteIds: [],
-        todoIds: [],
-        journalIds: [],
-    },
-    mqLxjuT0X2Pg: {
-        name: "Folder 3",
-        subfolders: ["Oyn99JHPcTBe"],
-        noteIds: [],
-        todoIds: [],
-        journalIds: [],
-    },
-    imnA4Mgvq4Wt: {
-        name: "Folder 3",
-        subfolders: [],
-        noteIds: ["Qqn1cxbMmcvh"],
-        todoIds: [],
-        journalIds: [],
-    },
-    DpGNi1fWsHyx: {
-        name: "Folder 3",
-        subfolders: [],
-        noteIds: [],
-        todoIds: [],
-        journalIds: [],
-    },
-    Oyn99JHPcTBe: {
-        name: "Folder 3",
-        subfolders: [],
-        noteIds: [],
-        todoIds: [],
-        journalIds: [],
-    },
-};
-exports.MOCK_NOTES_DATA = {
-    "ba0aed9a-06d8-4f2b-b7a4-a41805d27301": {
-        name: "Note 1",
-        sections: [
-            {
-                title: "Section 1",
-                content: "This is the content of section 1",
-            },
-            {
-                title: "Section 2",
-                content: "This is the content of section 2",
-            },
-        ],
-    },
-    Qqn1cxbMmcvh: {
-        name: "Note 2",
-        sections: [
-            {
-                title: "Section 1",
-                content: "This is the content of section 1",
-            },
-        ],
-    },
-    ZiOFG60hBJ8d: {
-        name: "Note 3",
-        sections: [
-            {
-                title: "Section 3",
-                content: "This is the content of section 3",
-            },
-        ],
-    },
 };
 exports.MOCK_TODOS_DATA = {
     oCoI28TsuAZw: {
