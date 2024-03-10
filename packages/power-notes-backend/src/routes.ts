@@ -1,6 +1,5 @@
-import express, { Request, Response } from "express";
-import { getFolder, getFolders, getNote } from "./logic";
-import { MOCK_JOURNALS_DATA, MOCK_TODOS_DATA } from "./mock-data/mockData";
+import express from "express";
+import { getFolder, getFolders, getJournal, getNote, getTodo } from "./logic";
 import {
     createFoldersTable,
     createNotesTable,
@@ -22,21 +21,7 @@ router.post("/notesSeedData", seedNotesTableData);
 router.get("/note/:noteId", getNote);
 
 // TODOS
-router.get("/todo/:todoId", (req: Request, res: Response) => {
-    if (req.params.todoId && MOCK_TODOS_DATA[req.params.todoId] != null) {
-        res.json(MOCK_TODOS_DATA[req.params.todoId]);
-    }
-
-    throw new Error("Todo List not found");
-});
+router.get("/todo/:todoId", getTodo);
 
 // JOURNALS
-router.get("/journal/:journalId", (req: Request, res: Response) => {
-    if (
-        req.params.journalId &&
-        MOCK_JOURNALS_DATA[req.params.journalId] != null
-    ) {
-        res.json(MOCK_JOURNALS_DATA[req.params.journalId]);
-    }
-    throw new Error("Journal not found");
-});
+router.get("/journal/:journalId", getJournal);
