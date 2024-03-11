@@ -2,7 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { FullDynamicWidthContentWrapper } from "../core/components/FullDynamicWidthContentWrapper";
 import { prefixWithBaseUrl } from "../core/utils/PrefixWithBaseUrl";
-import { prefixWithBaseApiPath } from "../core/utils/PrefixWithBaseApiPath";
+import { prefixWithBaseTodosApiPath } from "../core/utils/baseApiPrefixes";
 
 interface Task {
     readonly completed: boolean;
@@ -24,7 +24,7 @@ export function TodoFileView() {
     const { todoId } = useParams();
 
     React.useEffect(() => {
-        fetch(prefixWithBaseUrl(prefixWithBaseApiPath(`todo/${todoId}`)))
+        fetch(prefixWithBaseUrl(prefixWithBaseTodosApiPath(`todo/${todoId}`)))
             .then((res) => {
                 console.log(res);
                 return res.json() as Promise<Todo>;

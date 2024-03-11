@@ -3,8 +3,8 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { CenteredDynamicWidthContentWrapper } from "../core/components/CenteredDynamicWidthContentWrapper";
 import { FullDynamicWidthContentWrapper } from "../core/components/FullDynamicWidthContentWrapper";
-import { prefixWithBaseApiPath } from "../core/utils/PrefixWithBaseApiPath";
 import { prefixWithBaseUrl } from "../core/utils/PrefixWithBaseUrl";
+import { prefixWithBaseNotesApiPath } from "../core/utils/baseApiPrefixes";
 import { NoteFileViewContent } from "./NoteFileViewContent";
 import { NoteTitle } from "./NoteTitle";
 
@@ -17,7 +17,9 @@ export function NoteFileView() {
 
     React.useEffect(() => {
         try {
-            fetch(prefixWithBaseUrl(prefixWithBaseApiPath(`note/${noteId}`)))
+            fetch(
+                prefixWithBaseUrl(prefixWithBaseNotesApiPath(`note/${noteId}`))
+            )
                 .then((res) => {
                     console.log(res);
                     return res.json() as Promise<NoteInformation>;

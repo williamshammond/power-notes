@@ -12,18 +12,18 @@ import {
     Divider,
     MenuItem,
 } from "@mui/material";
-import React from "react";
-import { LeftMenuItem } from "./LeftMenuItem";
-import { prefixWithBaseApiPath } from "../../core/utils/PrefixWithBaseApiPath";
-import { prefixWithBaseUrl } from "../../core/utils/PrefixWithBaseUrl";
 import { FolderInformation } from "@power-notes/power-notes-shared";
 import { RootFolders } from "@power-notes/power-notes-shared/src/types/FolderInformation";
+import React from "react";
+import { prefixWithBaseUrl } from "../../core/utils/PrefixWithBaseUrl";
+import { prefixWithBaseFoldersApiPath } from "../../core/utils/baseApiPrefixes";
+import { LeftMenuItem } from "./LeftMenuItem";
 
 export const LeftMenu = function LeftMenu() {
     const [folders, setFolders] = React.useState<RootFolders>([]);
 
     React.useEffect(() => {
-        fetch(prefixWithBaseUrl(prefixWithBaseApiPath("folders")))
+        fetch(prefixWithBaseUrl(prefixWithBaseFoldersApiPath("folders")))
             .then((res) => {
                 console.log(res);
                 return res.json() as Promise<ReadonlyArray<FolderInformation>>;

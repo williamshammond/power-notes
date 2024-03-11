@@ -7,6 +7,7 @@ import { NoteSectionDropTarget } from "./NoteSectionDropTarget";
 import { TextSection } from "./TextSection";
 import { TodoSection } from "./TodoSection";
 import { Section, SectionType } from "./types/Section";
+import { NoteSectionContainer } from "./NoteSectionContainer";
 
 interface Props {
     readonly note: NoteInformation;
@@ -26,33 +27,37 @@ export const NoteCanvas = React.memo(function NoteCanvasFn({
                 switch (section.type) {
                     case SectionType.MEDIA:
                         return (
-                            <MediaSection
-                                key={section.title}
-                                content={section.content}
-                            />
+                            <NoteSectionContainer>
+                                <MediaSection
+                                    key={section.title}
+                                    content={section.content}
+                                />
+                            </NoteSectionContainer>
                         );
                     case SectionType.TEXT:
                         return (
-                            <TextSection
-                                key={section.title}
-                                content={section.content}
-                            />
+                            <NoteSectionContainer>
+                                <TextSection
+                                    key={section.title}
+                                    content={section.content}
+                                />
+                            </NoteSectionContainer>
                         );
                     case SectionType.TODO:
                         return (
-                            <TodoSection
-                                key={section.title}
-                                content={section.content}
-                            />
+                            <NoteSectionContainer>
+                                <TodoSection
+                                    key={section.title}
+                                    content={section.content}
+                                />
+                            </NoteSectionContainer>
                         );
                     default:
                         assertNever(section.type);
                 }
             })}
             {sections.length == 0 && (
-                <Box sx={{ minWidth: "200px", minHeight: "100px" }}>
-                    No sections yet!
-                </Box>
+                <Box sx={{ minHeight: "50px" }}>No sections yet!</Box>
             )}
             <NoteSectionDropTarget />
         </Box>
