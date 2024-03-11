@@ -1,23 +1,6 @@
-import { Request, Response } from "express";
-import { db } from "./database";
 import { FolderDb, FolderInformation } from "@power-notes/power-notes-shared";
-
-export async function getNote(req: Request, res: Response) {
-    try {
-        if (req.params.noteId == null) {
-            console.log(req.params);
-            res.status(400).json({ message: "Note id is required" });
-            return;
-        }
-        const notes = await db.one(
-            "SELECT * FROM notes WHERE id = $1",
-            req.params.noteId
-        );
-        res.status(200).json(notes);
-    } catch (error) {
-        res.status(500).json({ message: "Error getting note", error });
-    }
-}
+import { db } from "../database";
+import { Request, Response } from "express";
 
 export async function getFolder(req: Request, res: Response) {
     try {
@@ -102,29 +85,5 @@ export async function getFolders(req: Request, res: Response) {
             message: "Error getting folders for user",
             error,
         });
-    }
-}
-
-export async function getJournal(req: Request, res: Response) {
-    try {
-        const journal = await db.any(
-            "SELECT * FROM public.journals WHERE id = $1::uuid",
-            req.params.journalId
-        );
-        res.status(200).json(journal);
-    } catch (error) {
-        throw new Error("Error getting journal");
-    }
-}
-
-export async function getTodo(req: Request, res: Response) {
-    try {
-        const todo = await db.any(
-            "SELECT * FROM public.todos WHERE id = $1::uuid",
-            req.params.todoId
-        );
-        res.status(200).json(todo);
-    } catch (error) {
-        throw new Error("Error getting todo");
     }
 }
