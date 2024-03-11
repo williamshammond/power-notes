@@ -20,10 +20,7 @@ export async function createFoldersTable(req: Request, res: Response) {
         CREATE TABLE public.folders (
           id UUID PRIMARY KEY,
           name VARCHAR(255),
-          subfolders UUID[],
-          notes UUID[],
-          todos UUID[],
-          journals UUID[],
+          parentFolderId UUID,
           userId UUID
         )
       `);
@@ -40,14 +37,11 @@ export async function seedFoldersTableData(_req: Request, res: Response) {
         await db.tx((t) => {
             const queries = MOCK_FOLDER_DATA.map((folder) => {
                 return t.none(
-                    "INSERT INTO public.folders(id, name, subfolders, notes, journals, todos, userId) VALUES($1, $2, $3::uuid[], $4::uuid[], $5::uuid[], $6::uuid[], $7::uuid)",
+                    "INSERT INTO public.folders(id, name, parentFolderId, userId) VALUES($1, $2, $3::uuid, $4::uuid)",
                     [
                         folder.id,
                         folder.name,
-                        folder.subfolderIds,
-                        folder.noteIds,
-                        folder.journalIds,
-                        folder.todoIds,
+                        folder.praentFolderId,
                         folder.userId,
                     ]
                 );
@@ -73,9 +67,10 @@ export async function createNotesTable(req: Request, res: Response) {
 
         await db.none(`
         CREATE TABLE public.notes (
+          content TEXT,
           id UUID PRIMARY KEY,
           name VARCHAR(255),
-          content TEXT
+          parentFolderId UUID
         )
       `);
 
@@ -91,8 +86,8 @@ export async function seedNotesTableData(_req: Request, res: Response) {
         await db.tx((t) => {
             const queries = MOCK_NOTES_DATA.map((note) => {
                 return t.none(
-                    "INSERT INTO public.notes(id, name, content) VALUES($1, $2, $3)",
-                    [note.id, note.name, note.content]
+                    "INSERT INTO public.notes(content, id, name, parentFolderId) VALUES($1, $2::uuid, $3, $4::uuid)",
+                    [note.content, note.id, note.name, note.parentFolderId]
                 );
             });
             return t.batch(queries);
@@ -116,9 +111,10 @@ export async function createTodosTable(req: Request, res: Response) {
 
         await db.none(`
         CREATE TABLE public.todos (
-          id UUID PRIMARY KEY,
-          name VARCHAR(255),
-          content TEXT
+            content TEXT,
+            id UUID PRIMARY KEY,
+            name VARCHAR(255),
+            parentFolderId UUID
         )
       `);
 
@@ -134,8 +130,8 @@ export async function seedTodosTableData(_req: Request, res: Response) {
         await db.tx((t) => {
             const queries = MOCK_TODOS_DATA.map((todo) => {
                 return t.none(
-                    "INSERT INTO public.todos(id, name, content) VALUES($1, $2, $3)",
-                    [todo.id, todo.name, todo.content]
+                    "INSERT INTO public.todos(content, id, name, parentFolderId) VALUES($1, $2::uuid, $3, $4::uuid)",
+                    [todo.content, todo.id, todo.name, todo.parentFolderId]
                 );
             });
             return t.batch(queries);
@@ -159,9 +155,10 @@ export async function createJournalsTable(req: Request, res: Response) {
 
         await db.none(`
         CREATE TABLE public.journals (
-          id UUID PRIMARY KEY,
-          name VARCHAR(255),
-          content TEXT
+            content TEXT,
+            id UUID PRIMARY KEY,
+            name VARCHAR(255),
+            parentFolderId UUID
         )
       `);
 
@@ -177,8 +174,13 @@ export async function seedJournalsTableData(_req: Request, res: Response) {
         await db.tx((t) => {
             const queries = MOCK_JOURNALS_DATA.map((journal) => {
                 return t.none(
-                    "INSERT INTO public.journals(id, name, content) VALUES($1, $2, $3)",
-                    [journal.id, journal.name, journal.content]
+                    "INSERT INTO public.journals(content, id, name, parentFolderId) VALUES($1, $2::uuid, $3, $4::uuid)",
+                    [
+                        journal.content,
+                        journal.id,
+                        journal.name,
+                        journal.parentFolderId,
+                    ]
                 );
             });
             return t.batch(queries);

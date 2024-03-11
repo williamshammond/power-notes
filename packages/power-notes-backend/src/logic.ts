@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { db } from "./database";
+import { FolderDb, FolderInformation } from "@power-notes/power-notes-shared";
 
 export async function getNote(req: Request, res: Response) {
     try {
@@ -25,15 +26,74 @@ export async function getFolder(req: Request, res: Response) {
     }
 }
 
-export async function getFolders(_req: Request, res: Response) {
+async function fetchSubfolders(folderId: string) {
+    return db.any(
+        "SELECT id, name FROM public.folders WHERE parentFolderId = $1",
+        folderId
+    );
+}
+
+async function fetchNotes(folderId: string) {
+    return db.any(
+        "SELECT id, name FROM public.notes WHERE parentFolderId = $1",
+        folderId
+    );
+}
+
+async function fetchTodos(folderId: string) {
+    return db.any(
+        "SELECT id, name FROM public.todos WHERE parentFolderId = $1",
+        folderId
+    );
+}
+
+async function fetchJournals(folderId: string) {
+    return db.any(
+        "SELECT id, name FROM public.journals WHERE parentFolderId = $1",
+        folderId
+    );
+}
+
+async function constructFolderTree(
+    folder: FolderDb
+): Promise<FolderInformation> {
+    const subfolders = await fetchSubfolders(folder.id);
+    const notes = await fetchNotes(folder.id);
+    const todos = await fetchTodos(folder.id);
+    const journals = await fetchJournals(folder.id);
+
+    for (let subfolder of subfolders) {
+        subfolder = await constructFolderTree(subfolder); // Recursive call to construct sub-tree
+    }
+
+    return {
+        ...folder,
+        subfolders,
+        notes,
+        todos,
+        journals,
+    };
+}
+
+export async function getFolders(req: Request, res: Response) {
     try {
-        const folder = await db.any(
-            "SELECT * FROM public.folders WHERE userId = $1::uuid",
+        const topLevelFolders = await db.any(
+            "SELECT id, name FROM public.folders WHERE userId = $1::uuid AND parentFolderId IS NULL",
             "730ea38e-993f-45f7-847a-3c3db81dedf0"
         );
-        res.status(200).json(folder);
+
+        const foldersWithDetails = [];
+        for (const folder of topLevelFolders) {
+            foldersWithDetails.push(await constructFolderTree(folder));
+        }
+
+        res.status(200).json(foldersWithDetails);
     } catch (error) {
-        throw new Error("Error getting folders for user");
+        console.error("Error getting folders for user:", error);
+        res.status(500).json({
+            message: "Error getting folders for user",
+            error,
+        });
     }
 }
 

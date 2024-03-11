@@ -1,5 +1,6 @@
 export interface JournalDb {
-    id: string;
-    name: string;
-    content: string;
+    readonly content: string;
+    readonly id: string;
+    readonly name: string;
+    readonly parentFolderId: string;
 }

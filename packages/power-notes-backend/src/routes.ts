@@ -2,9 +2,13 @@ import express from "express";
 import { getFolder, getFolders, getJournal, getNote, getTodo } from "./logic";
 import {
     createFoldersTable,
+    createJournalsTable,
     createNotesTable,
+    createTodosTable,
     seedFoldersTableData,
+    seedJournalsTableData,
     seedNotesTableData,
+    seedTodosTableData,
 } from "./seeding";
 
 export const router = express.Router();
@@ -16,8 +20,8 @@ router.get("/folders", getFolders);
 router.get("/folder/:folderId", getFolder);
 
 // JOURNALS
-router.put("/journalsTable", createFoldersTable);
-router.post("/journalsSeedData", seedFoldersTableData);
+router.put("/journalsTable", createJournalsTable);
+router.post("/journalsSeedData", seedJournalsTableData);
 router.get("/journal/:journalId", getJournal);
 
 // NOTES
@@ -26,6 +30,6 @@ router.post("/notesSeedData", seedNotesTableData);
 router.get("/note/:noteId", getNote);
 
 // TODOS
-router.put("/todosTable", createFoldersTable);
-router.post("/todosSeedData", seedFoldersTableData);
+router.put("/todosTable", createTodosTable);
+router.post("/todosSeedData", seedTodosTableData);
 router.get("/todo/:todoId", getTodo);
