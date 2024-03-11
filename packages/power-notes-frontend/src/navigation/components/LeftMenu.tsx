@@ -89,6 +89,7 @@ function displayFolder(folder: FolderInformation, layer: number): JSX.Element {
                                 documentInformation={note}
                                 icon={<EditNote />}
                                 key={note.id}
+                                urlBase="note"
                             />
                         ))}
                         {folder.todos.map((todo) => (
@@ -96,6 +97,7 @@ function displayFolder(folder: FolderInformation, layer: number): JSX.Element {
                                 documentInformation={todo}
                                 icon={<Checklist />}
                                 key={todo.id}
+                                urlBase="todo"
                             />
                         ))}
                         {folder.journals.map((journal) => (
@@ -103,6 +105,7 @@ function displayFolder(folder: FolderInformation, layer: number): JSX.Element {
                                 documentInformation={journal}
                                 icon={<AutoStoriesOutlined />}
                                 key={journal.id}
+                                urlBase="journal"
                             />
                         ))}
                         {folder.subfolders.map((subfolder) =>
