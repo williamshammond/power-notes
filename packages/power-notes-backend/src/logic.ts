@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 import { db } from "./database";
-import { MOCK_JOURNALS_DATA, MOCK_TODOS_DATA } from "./mock-data/mockData";
 
 export async function getNote(req: Request, res: Response) {
     try {
@@ -38,20 +37,26 @@ export async function getFolders(_req: Request, res: Response) {
     }
 }
 
-export function getTodo(req: Request, res: Response) {
-    if (req.params.todoId && MOCK_TODOS_DATA[req.params.todoId] != null) {
-        res.json(MOCK_TODOS_DATA[req.params.todoId]);
+export async function getJournal(req: Request, res: Response) {
+    try {
+        const journal = await db.any(
+            "SELECT * FROM public.journals WHERE id = $1::uuid",
+            req.params.journalId
+        );
+        res.status(200).json(journal);
+    } catch (error) {
+        throw new Error("Error getting journal");
     }
-
-    throw new Error("Todo List not found");
 }
 
-export function getJournal(req: Request, res: Response) {
-    if (
-        req.params.journalId &&
-        MOCK_JOURNALS_DATA[req.params.journalId] != null
-    ) {
-        res.json(MOCK_JOURNALS_DATA[req.params.journalId]);
+export async function getTodo(req: Request, res: Response) {
+    try {
+        const todo = await db.any(
+            "SELECT * FROM public.todos WHERE id = $1::uuid",
+            req.params.todoId
+        );
+        res.status(200).json(todo);
+    } catch (error) {
+        throw new Error("Error getting todo");
     }
-    throw new Error("Journal not found");
 }

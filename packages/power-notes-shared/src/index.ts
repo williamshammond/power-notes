@@ -1,3 +1,7 @@
+export type { FolderDb } from "./types/FolderDb";
+export type { JournalDb } from "./types/JournalDb";
+export type { NoteDb } from "./types/NoteDb";
+export type { TodoDb } from "./types/TodoDb";
 export type {
     JournalContent,
     NoteContent,
@@ -11,5 +15,3 @@ export type {
     NoteInformation,
     TodoInformation,
 } from "./types/documentInformationTypes";
-export type { FolderDb } from "./types/FolderDb";
-export type { NoteDb } from "./types/NoteDb";
