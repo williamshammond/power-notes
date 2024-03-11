@@ -1,13 +1,13 @@
-import { Box } from "@mui/material";
-import React from "react";
-import { NoteSideMenu } from "./NoteSideMenu";
-import { NoteCanvas } from "./NoteCanvas";
 import { DndContext, DragEndEvent } from "@dnd-kit/core";
-import { Note } from "./types/Note";
+import { Box } from "@mui/material";
+import { NoteInformation } from "@power-notes/power-notes-shared";
+import React from "react";
+import { NoteCanvas } from "./NoteCanvas";
+import { NoteSideMenu } from "./NoteSideMenu";
 import { Section, SectionType } from "./types/Section";
 
 interface Props {
-    readonly note: Note;
+    readonly note: NoteInformation;
 }
 
 export const NoteFileViewContent = React.memo<Props>(

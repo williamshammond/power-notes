@@ -1,15 +1,17 @@
+import { NoteInformation } from "@power-notes/power-notes-shared";
 import React from "react";
 import { useParams } from "react-router-dom";
-import { FullDynamicWidthContentWrapper } from "../core/components/FullDynamicWidthContentWrapper";
-import { NoteFileViewContent } from "./NoteFileViewContent";
 import { CenteredDynamicWidthContentWrapper } from "../core/components/CenteredDynamicWidthContentWrapper";
-import { NoteTitle } from "./NoteTitle";
-import { Note } from "./types/Note";
-import { prefixWithBaseUrl } from "../core/utils/PrefixWithBaseUrl";
+import { FullDynamicWidthContentWrapper } from "../core/components/FullDynamicWidthContentWrapper";
 import { prefixWithBaseApiPath } from "../core/utils/PrefixWithBaseApiPath";
+import { prefixWithBaseUrl } from "../core/utils/PrefixWithBaseUrl";
+import { NoteFileViewContent } from "./NoteFileViewContent";
+import { NoteTitle } from "./NoteTitle";
 
 export function NoteFileView() {
-    const [note, setNote] = React.useState<Note | undefined>(undefined);
+    const [note, setNote] = React.useState<NoteInformation | undefined>(
+        undefined
+    );
 
     const { noteId } = useParams();
 
@@ -18,7 +20,7 @@ export function NoteFileView() {
             fetch(prefixWithBaseUrl(prefixWithBaseApiPath(`note/${noteId}`)))
                 .then((res) => {
                     console.log(res);
-                    return res.json() as Promise<Note>;
+                    return res.json() as Promise<NoteInformation>;
                 })
                 .then((data) => setNote(data));
         } catch (e) {

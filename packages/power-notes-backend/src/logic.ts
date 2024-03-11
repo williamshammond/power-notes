@@ -4,13 +4,18 @@ import { FolderDb, FolderInformation } from "@power-notes/power-notes-shared";
 
 export async function getNote(req: Request, res: Response) {
     try {
-        const notes = await db.any(
+        if (req.params.noteId == null) {
+            console.log(req.params);
+            res.status(400).json({ message: "Note id is required" });
+            return;
+        }
+        const notes = await db.one(
             "SELECT * FROM notes WHERE id = $1",
-            req.params.id
+            req.params.noteId
         );
         res.status(200).json(notes);
     } catch (error) {
-        throw new Error("Error getting notes");
+        res.status(500).json({ message: "Error getting note", error });
     }
 }
 
@@ -22,7 +27,7 @@ export async function getFolder(req: Request, res: Response) {
         );
         res.status(200).json(folder);
     } catch (error) {
-        throw new Error("Error getting notes");
+        throw new Error("Error getting folder");
     }
 }
 

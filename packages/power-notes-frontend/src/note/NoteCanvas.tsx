@@ -1,15 +1,15 @@
 import { useDroppable } from "@dnd-kit/core";
 import { Box } from "@mui/material";
+import { NoteInformation } from "@power-notes/power-notes-shared";
 import React from "react";
 import { assertNever } from "../core/utils/AssertNever";
 import { MediaSection } from "./MediaSection";
 import { TextSection } from "./TextSection";
 import { TodoSection } from "./TodoSection";
-import { Note } from "./types/Note";
 import { Section, SectionType } from "./types/Section";
 
 interface Props {
-    readonly note: Note;
+    readonly note: NoteInformation;
     readonly sections: ReadonlyArray<Section>;
 }
 
@@ -21,9 +21,12 @@ export const NoteCanvas = React.memo(function NoteCanvasFn({
         id: "canvas",
     });
 
+    // TODO (whammond): Remove this and use the note data
+    console.log(note);
+
     return (
         <Box ref={setNodeRef} sx={{ backgroundColor: isOver ? "red" : "blue" }}>
-            {note.sections.map((section) => (
+            {sections.map((section) => (
                 <div key={section.title}>{section.content}</div>
             ))}
             {sections.map((section) => {
