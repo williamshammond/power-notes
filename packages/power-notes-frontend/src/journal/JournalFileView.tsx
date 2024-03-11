@@ -1,6 +1,8 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { FullDynamicWidthContentWrapper } from "../core/components/FullDynamicWidthContentWrapper";
+import { prefixWithBaseApiPath } from "../core/utils/PrefixWithBaseApiPath";
+import { prefixWithBaseUrl } from "../core/utils/PrefixWithBaseUrl";
 
 interface Journal {
     readonly name: string;
@@ -16,7 +18,7 @@ export function JournalFileView() {
     const { journalId } = useParams();
 
     React.useEffect(() => {
-        fetch(`http://localhost:3000/journal/${journalId}`)
+        fetch(prefixWithBaseUrl(prefixWithBaseApiPath(`journal/${journalId}`)))
             .then((res) => {
                 console.log(res);
                 return res.json() as Promise<Journal>;

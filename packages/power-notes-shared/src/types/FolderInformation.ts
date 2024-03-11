@@ -12,3 +12,5 @@ export interface FolderInformation {
     readonly subfolders: ReadonlyArray<FolderInformation>;
     readonly todos: ReadonlyArray<TodoInformation>;
 }
+
+export type RootFolders = ReadonlyArray<FolderInformation>;

@@ -14,16 +14,19 @@ import {
 } from "@mui/material";
 import React from "react";
 import { LeftMenuItem } from "./LeftMenuItem";
-import { FolderData, Folder } from "../types/documentTypes";
+import { prefixWithBaseApiPath } from "../../core/utils/PrefixWithBaseApiPath";
+import { prefixWithBaseUrl } from "../../core/utils/PrefixWithBaseUrl";
+import { FolderInformation } from "@power-notes/power-notes-shared";
+import { RootFolders } from "@power-notes/power-notes-shared/src/types/FolderInformation";
 
 export const LeftMenu = function LeftMenu() {
-    const [folders, setFolders] = React.useState<FolderData>({ folders: [] });
+    const [folders, setFolders] = React.useState<RootFolders>([]);
 
     React.useEffect(() => {
-        fetch("http://localhost:3000/folders")
+        fetch(prefixWithBaseUrl(prefixWithBaseApiPath("folders")))
             .then((res) => {
                 console.log(res);
-                return res.json() as Promise<FolderData>;
+                return res.json() as Promise<ReadonlyArray<FolderInformation>>;
             })
             .then((data) => setFolders(data));
     }, []);
@@ -33,13 +36,13 @@ export const LeftMenu = function LeftMenu() {
     return (
         <Box>
             {folders != null
-                ? folders.folders.map((folder) => displayFolder(folder, 0))
+                ? folders.map((folder) => displayFolder(folder, 0))
                 : "Nothing yet"}
         </Box>
     );
 };
 
-function displayFolder(folder: Folder, layer: number): JSX.Element {
+function displayFolder(folder: FolderInformation, layer: number): JSX.Element {
     return (
         <Accordion
             key={folder.id}

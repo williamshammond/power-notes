@@ -5,6 +5,8 @@ import { NoteFileViewContent } from "./NoteFileViewContent";
 import { CenteredDynamicWidthContentWrapper } from "../core/components/CenteredDynamicWidthContentWrapper";
 import { NoteTitle } from "./NoteTitle";
 import { Note } from "./types/Note";
+import { prefixWithBaseUrl } from "../core/utils/PrefixWithBaseUrl";
+import { prefixWithBaseApiPath } from "../core/utils/PrefixWithBaseApiPath";
 
 export function NoteFileView() {
     const [note, setNote] = React.useState<Note | undefined>(undefined);
@@ -13,7 +15,7 @@ export function NoteFileView() {
 
     React.useEffect(() => {
         try {
-            fetch(`http://localhost:3000/note/${noteId}`)
+            fetch(prefixWithBaseUrl(prefixWithBaseApiPath(`note/${noteId}`)))
                 .then((res) => {
                     console.log(res);
                     return res.json() as Promise<Note>;

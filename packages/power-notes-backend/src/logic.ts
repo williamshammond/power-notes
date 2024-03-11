@@ -62,16 +62,19 @@ async function constructFolderTree(
     const todos = await fetchTodos(folder.id);
     const journals = await fetchJournals(folder.id);
 
+    const fullSubFolders: FolderInformation[] = [];
+
     for (let subfolder of subfolders) {
         subfolder = await constructFolderTree(subfolder); // Recursive call to construct sub-tree
+        fullSubFolders.push(subfolder);
     }
 
     return {
         ...folder,
-        subfolders,
-        notes,
-        todos,
-        journals,
+        journals: journals ?? [],
+        notes: notes ?? [],
+        subfolders: fullSubFolders ?? [],
+        todos: todos ?? [],
     };
 }
 
