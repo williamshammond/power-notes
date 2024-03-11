@@ -17,6 +17,10 @@ export const NoteFileViewContent = React.memo<Props>(
         );
 
         const handleDragEnd = (event: DragEndEvent) => {
+            if (event.over?.id !== "note-drop-section") {
+                return;
+            }
+
             setSections((sections) => {
                 const newSections = [...sections];
                 newSections.push({
@@ -30,7 +34,7 @@ export const NoteFileViewContent = React.memo<Props>(
         };
 
         return (
-            <Box sx={{ display: "flex", flexDirection: "row" }}>
+            <Box sx={{ display: "flex", flexDirection: "row", gap: "10px" }}>
                 <DndContext onDragEnd={handleDragEnd}>
                     <NoteSideMenu />
                     <NoteCanvas note={note} sections={sections}></NoteCanvas>
