@@ -1,13 +1,19 @@
 import { FolderDb, FolderInformation } from "@power-notes/power-notes-shared";
-import { db } from "../database";
 import { Request, Response } from "express";
+import { db } from "../database";
+import {
+    getFolderAllColumnsById,
+    getJournalsIdNameByParentId,
+    getNotesIdNameByParentId,
+    getSubFoldersIdNameByParentId,
+    getTodosIdNameByParentId,
+} from "./foldersQueries";
 
 export async function getFolder(req: Request, res: Response) {
     try {
-        const folder = await db.any(
-            "SELECT * FROM public.folders WHERE id = $1::uuid",
-            req.params.folderId
-        );
+        const folder = await db.one(getFolderAllColumnsById, [
+            req.params.folderId,
+        ]);
         res.status(200).json(folder);
     } catch (error) {
         throw new Error("Error getting folder");
@@ -15,31 +21,19 @@ export async function getFolder(req: Request, res: Response) {
 }
 
 async function fetchSubfolders(folderId: string) {
-    return db.any(
-        "SELECT id, name FROM public.folders WHERE parentFolderId = $1",
-        folderId
-    );
+    return db.any(getSubFoldersIdNameByParentId, [folderId]);
 }
 
 async function fetchNotes(folderId: string) {
-    return db.any(
-        "SELECT id, name FROM public.notes WHERE parentFolderId = $1",
-        folderId
-    );
+    return db.any(getNotesIdNameByParentId, [folderId]);
 }
 
 async function fetchTodos(folderId: string) {
-    return db.any(
-        "SELECT id, name FROM public.todos WHERE parentFolderId = $1",
-        folderId
-    );
+    return db.any(getTodosIdNameByParentId, [folderId]);
 }
 
 async function fetchJournals(folderId: string) {
-    return db.any(
-        "SELECT id, name FROM public.journals WHERE parentFolderId = $1",
-        folderId
-    );
+    return db.any(getJournalsIdNameByParentId, [folderId]);
 }
 
 async function constructFolderTree(
