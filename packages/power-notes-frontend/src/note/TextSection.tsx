@@ -1,5 +1,7 @@
+import styles from "+styles/TextSection.module.scss";
 import { Box } from "@mui/material";
 import React from "react";
+import { Editor, EditorState } from "draft-js";
 
 interface Props {
     content: string;
@@ -8,5 +10,19 @@ interface Props {
 export const TextSection = React.memo(function TextSectionFn({
     content,
 }: Props) {
-    return <Box>Text content: {content}</Box>;
+    const [editorState, setEditorState] = React.useState(() =>
+        EditorState.createEmpty()
+    );
+
+    /* TODO (whammond): Remove this and figure out if I want to pass content here or not use it.
+     * The question is where/how I want to load the content of a text box. */
+    console.log(content);
+
+    return (
+        <Box sx={{ padding: "10px", border: "1px solid grey" }}>
+            <Box className={styles.textEditor}>
+                <Editor editorState={editorState} onChange={setEditorState} />
+            </Box>
+        </Box>
+    );
 });
