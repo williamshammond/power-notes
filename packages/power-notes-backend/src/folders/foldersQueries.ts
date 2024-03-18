@@ -1,3 +1,6 @@
+export const createFolderQuery =
+    "INSERT INTO public.folders (id, name, parentFolderId, userId) VALUES ($1::uuid, $2, $3::uuid, $4::uuid)";
+
 export const getFolderAllColumnsById =
     "SELECT * FROM public.folders WHERE id = $1::uuid";
 

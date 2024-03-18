@@ -9,6 +9,7 @@ import {
     AccordionDetails,
     AccordionSummary,
     Box,
+    Button,
     Divider,
     MenuItem,
 } from "@mui/material";
@@ -18,6 +19,11 @@ import React from "react";
 import { prefixWithBaseUrl } from "../../core/utils/PrefixWithBaseUrl";
 import { prefixWithBaseFoldersApiPath } from "../../core/utils/baseApiPrefixes";
 import { LeftMenuItem } from "./LeftMenuItem";
+
+interface CreateFolderResponse {
+    message: string;
+    error?: string;
+}
 
 export const LeftMenu = function LeftMenu() {
     const [folders, setFolders] = React.useState<RootFolders>([]);
@@ -31,6 +37,37 @@ export const LeftMenu = function LeftMenu() {
             .then((data) => setFolders(data));
     }, []);
 
+    const handleNewFolderClick =
+        React.useCallback(async (): Promise<CreateFolderResponse> => {
+            const requestBody = {
+                name: "Test name",
+                parentFolderId: null,
+            };
+
+            try {
+                const response = await fetch(
+                    prefixWithBaseUrl(prefixWithBaseFoldersApiPath("folder")),
+                    {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify(requestBody),
+                    }
+                );
+
+                if (!response.ok) {
+                    throw new Error("Network response was not ok");
+                }
+
+                const data: CreateFolderResponse = await response.json();
+                return data;
+            } catch (error) {
+                console.error("Error creating folder:", error);
+                throw new Error("Error creating folder");
+            }
+        }, []);
+
     console.log(folders);
 
     return (
@@ -38,6 +75,9 @@ export const LeftMenu = function LeftMenu() {
             {folders != null
                 ? folders.map((folder) => displayFolder(folder, 0))
                 : "Nothing yet"}
+            <Button sx={{ background: "white" }} onClick={handleNewFolderClick}>
+                Create new folder
+            </Button>
         </Box>
     );
 };
