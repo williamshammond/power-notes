@@ -20,7 +20,7 @@ import { prefixWithBaseUrl } from "../../core/utils/PrefixWithBaseUrl";
 import { prefixWithBaseFoldersApiPath } from "../../core/utils/baseApiPrefixes";
 import { LeftMenuItem } from "./LeftMenuItem";
 import { createNewFolder } from "../utils/CreateNewFolder";
-import NewElementCreationWrapper from "./NewElementCreationWrapper";
+import { NewElementCreationWrapper } from "./NewElementCreationWrapper";
 
 export const LeftMenu = function LeftMenu() {
     const [folders, setFolders] = React.useState<RootFolders>([]);

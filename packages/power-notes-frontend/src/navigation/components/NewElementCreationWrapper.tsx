@@ -16,7 +16,7 @@ interface CreateMenuOptions {
     readonly displayText: string;
 }
 
-const NewElementCreationWrapper = React.memo(
+export const NewElementCreationWrapper = React.memo(
     function NewElementCreationWrapperFn({ children, folder }: Props) {
         const createMenuOptions: ReadonlyArray<CreateMenuOptions> = [
             { displayText: "Create new subfolder", createOption: "FOLDER" },
@@ -25,20 +25,25 @@ const NewElementCreationWrapper = React.memo(
             { displayText: "Create new journal", createOption: "JOURNAL" },
         ];
 
-        const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(
-            null
-        );
+        const [anchorPosition, setAnchorPosition] = React.useState<
+            | {
+                  x: number;
+                  y: number;
+              }
+            | undefined
+        >(undefined);
+
+        const open = anchorPosition !== undefined;
 
         // TODO (whammond): Make the location of the context menu more click location specific
         const handleClickListItem = (event: React.MouseEvent<HTMLElement>) => {
             event.preventDefault();
             event.stopPropagation();
-            setAnchorEl(event.currentTarget);
+            setAnchorPosition({ x: event.clientX, y: event.clientY });
         };
-        const open = Boolean(anchorEl);
 
         const handleClose = () => {
-            setAnchorEl(null);
+            setAnchorPosition(undefined);
         };
 
         // TODO (whammond): Figure out the picture for editing folder, item names
@@ -71,7 +76,12 @@ const NewElementCreationWrapper = React.memo(
                 {children}
                 <Menu
                     id="lock-menu"
-                    anchorEl={anchorEl}
+                    anchorReference="anchorPosition"
+                    anchorPosition={
+                        anchorPosition
+                            ? { top: anchorPosition.y, left: anchorPosition.x }
+                            : undefined
+                    }
                     open={open}
                     onClose={handleClose}
                     MenuListProps={{
@@ -92,5 +102,3 @@ const NewElementCreationWrapper = React.memo(
         );
     }
 );
-
-export default NewElementCreationWrapper;
