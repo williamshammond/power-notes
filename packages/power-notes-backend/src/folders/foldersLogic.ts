@@ -8,11 +8,14 @@ import {
     getNotesIdNameByParentId,
     getSubFoldersIdNameByParentId,
     getTodosIdNameByParentId,
+    updateFolderNameById,
 } from "./foldersQueries";
 import { v4 as uuidv4 } from "uuid";
 
 export async function createFolder(req: Request, res: Response) {
     try {
+        console.log(req.body);
+
         const { name, parentFolderId } = req.body;
 
         // Check if the parent folder exists
@@ -40,6 +43,35 @@ export async function createFolder(req: Request, res: Response) {
         console.error("Error creating folder:", error);
         res.status(500).json({
             message: "Error creating folder",
+            error,
+        });
+    }
+}
+
+//Write a function to update a folder by checking if it exists, first, then getting the folder by id and updating the name and parentFolderId
+export async function updateFolder(req: Request, res: Response) {
+    const { name } = req.body;
+
+    console.log(req.body);
+
+    try {
+        const folder = await db.one(getFolderAllColumnsById, [
+            req.params.folderId,
+        ]);
+        if (folder == null) {
+            return res.status(400).json({
+                message: "Folder does not exist",
+            });
+        }
+
+        await db.none(updateFolderNameById, [name, req.params.folderId]);
+        res.status(200).json({
+            message: "Folder updated",
+        });
+    } catch (error) {
+        console.error("Error updating folder:", error);
+        res.status(500).json({
+            message: "Error updating folder",
             error,
         });
     }

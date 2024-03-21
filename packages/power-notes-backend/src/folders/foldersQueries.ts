@@ -15,3 +15,6 @@ export const getTodosIdNameByParentId =
 
 export const getJournalsIdNameByParentId =
     "SELECT id, name FROM public.journals WHERE parentFolderId = $1";
+
+export const updateFolderNameById =
+    "UPDATE public.folders SET name = $1 WHERE id = $2";
