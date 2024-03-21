@@ -1,4 +1,4 @@
-import { Menu, MenuItem } from "@mui/material";
+import { Divider, Menu, MenuItem } from "@mui/material";
 import { FolderInformation } from "@power-notes/power-notes-shared";
 import React from "react";
 import { assertNever } from "../../core/utils/AssertNever";
@@ -9,6 +9,7 @@ interface Props extends React.PropsWithChildren {
 }
 
 // TODO (whammond): Clean up + move these types elsewhere
+// TOOD (whammond): Either rename this type or remove "RENAME" option
 type ElementCreateOption = "NOTE" | "FOLDER" | "TODO" | "JOURNAL";
 
 interface CreateMenuOptions {
@@ -48,7 +49,7 @@ export const NewElementCreationWrapper = React.memo(
 
         // TODO (whammond): Figure out the picture for editing folder, item names
         // TODO (whammond): Add other creation implementations here
-        const handleMenuItemClick = React.useCallback(
+        const handleCreateMenuItemClick = React.useCallback(
             (createOption: ElementCreateOption) => {
                 switch (createOption) {
                     case "FOLDER":
@@ -89,10 +90,14 @@ export const NewElementCreationWrapper = React.memo(
                         role: "listbox",
                     }}
                 >
+                    <MenuItem onClick={() => undefined}>Rename Folder</MenuItem>
+                    <Divider />
                     {createMenuOptions.map(({ createOption, displayText }) => (
                         <MenuItem
                             key={createOption}
-                            onClick={() => handleMenuItemClick(createOption)}
+                            onClick={() =>
+                                handleCreateMenuItemClick(createOption)
+                            }
                         >
                             {displayText}
                         </MenuItem>
